@@ -1,0 +1,55 @@
+View types:
+	Overview
+	Empire (?)
+	Buildings
+	Ships (currently in orbit)
+	Fleets (currently under way)
+	(Planetary) Defense
+	(Interplanetary) Missiles
+	Resources
+	Research
+	Technology tree
+	Sensor view (from planet / fleet)
+	Intergalactic map (?)
+	Notes
+	Messages
+	Alliance
+	Diplomacy
+	Market
+	Search
+	Statistics
+	Account
+	History
+	Settings
+	Profile
+
+Calculated player properties:
+
+Calculated orb properties:
+	Resource production
+	Resource storage capability
+	Sensor reach(es) - maximum distance to obtain information on orbs, fleets...
+	Communication reach - maximum distance to send command / read sensors of a fleet
+	Cloak capability - makes it difficult for others to scan / see orb information
+
+Calculated fleet properties:
+	Maximum speed
+	Maximum transport capacity
+	Maximum fuel capacity
+	Fuel consumtion (depending on speed / route)
+	Sensor reach(es) - maximum distance to obtain information on orbs, fleets...
+
+Fleet missions:
+	Fly - move to other place with specified speed
+	Deliver (at orb) - unload specified amount of resources at destination if resources are on board, do nothing otherwise
+	Fetch (at orb) - load specified amount of resources at destination if granted permission and resources are present, do nothing otherwise
+	Deploy (at orb) - unload all resources and go into orbit (must always be last)
+	Attack (at orb) - battle with orbital ships and defense, steal resources in case on win
+	Attack (at opponent fleet) - battle with travelling ships
+	Colonize (at orb) - take ownership of orb and unload specified amount of resources at destination if orb is unowned and resources are on board, do nothing otherwise
+	Defend (at orb) - go into orbit and join defending fleet for specified amount of time
+	Collect (at natural resource or previous battle field) - collect resources / debris
+	Join convoy (at own fleet) - merge with other fleet
+	Split convoy (anywhere) - split fleet into two fleets
+	Join convoy (at friend fleet) - join other fleet and participate in some mission
+	Split convoy (at friend fleet) - stop participating in missions
