@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+
+	<!-- ======== View root element ======== -->
+
+	<element name="view">
+		<complexType>
+			<sequence>
+				<element ref="positions" minOccurs="0"/>
+				<element ref="resources" minOccurs="0"/>
+				<element ref="buildings" minOccurs="0"/>
+			</sequence>
+			<attributeGroup ref="viewattrs"/>
+		</complexType>
+	</element>
+
+	<!-- ======== Standard datasets ======== -->
+
+	<!-- Buildings data - contains buildings for one orb -->
+	<element name="buildings">
+		<complexType>
+			<sequence>
+				<element ref="building" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<!-- ======== View elements ======== -->
+
+	<!-- Single building -->
+	<element name="building">
+		<complexType ref="fixedobj"/>
+	</element>
+
+	<!-- ======== Attributes and types ======== -->
+
+	<!-- Default view attributes -->
+	<attributeGroup name="viewattrs">
+		<attribute name="lang" type="language" use="required"/>
+		<attribute name="servertime" type="positiveInteger" use="required"/>
+		<attribute name="session" type="hexBinary" use="required"/>
+		<attribute name="xslt" type="anyURI" default=""/>
+		<attribute name="css" type="anyURI" default=""/>
+	</attributeGroup>
+
+	<!-- Complex type for fixed object (building, research...) -->
+	<complexType name="fixedobj">
+		<sequence>
+			<element ref="cost" maxOccurs="unbounded"/>
+			<element ref="description"/>
+		</sequence>
+		<attribute name="id" type="string" use="required"/>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="time" type="integer" default="0"/>
+		<attribute name="curlevel" type="integer" default="0"/>
+		<attribute name="planlevel" type="integer" default="0"/>
+	</complexType>
+</schema>
