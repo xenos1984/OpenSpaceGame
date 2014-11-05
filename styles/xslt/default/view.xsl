@@ -2,8 +2,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" omit-xml-declaration="yes" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
 
+	<xsl:variable name="i18n" select="document('i18n.xml')"/>
+
 	<xsl:template match="view">
 		<xsl:variable name="curpos" select="positions/position[@galaxy = /view/positions/@curg and @solsys = /view/positions/@curs and @orbit = /view/positions/@curo and @celb = /view/positions/@curc]"/>
+		<xsl:variable name="lang" select="@lang"/>
 		<html>
 			<head>
 				<title>OpenSpaceGame</title>
@@ -11,6 +14,10 @@
 			</head>
 			<body>
 				<div id="menu">
+					<table class="menutab">
+						<tr><td class="menu"><a class="menulink" accesskey="o" href="view.php?view=overview&amp;session={@session}"><xsl:value-of select="$i18n/i18n/trans[@lang = $lang and @key = 'menu_ov']"/></a></td></tr>
+						<tr><td class="menu"><a class="menulink" accesskey="e" href="view.php?view=empire&amp;session={@session}"><xsl:value-of select="$i18n/i18n/trans[@lang = $lang and @key = 'menu_em']"/></a></td></tr>
+					</table>
 				</div>
 				<div id="poslist">
 					<table class="poslist">

@@ -80,6 +80,33 @@ div#logo
 	width: 100px;
 }
 
+/* Menu styles */
+
+table.menutab, td.menu
+{
+	background-color: #000020;
+	border: 1px #000080 solid;
+}
+
+td.menuspace
+{
+	height: 16px;
+}
+
+td.menu
+{
+	text-align: center;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+a.menulink
+{
+	text-decoration: none;
+}
+
 /* Celestial bodys */
 
 *.possmall, *.sunsmall

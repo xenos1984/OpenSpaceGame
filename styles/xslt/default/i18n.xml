@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<i18n>
+	<trans lang="en" key="menu_ov">Overview</trans>
+	<trans lang="de" key="menu_ov">Übersicht</trans>
+	<trans lang="en" key="menu_em">Empire</trans>
+	<trans lang="de" key="menu_em">Imperium</trans>
+</i18n>
