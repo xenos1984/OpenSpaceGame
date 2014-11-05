@@ -1,58 +1,110 @@
-<?xml version="1.1" encoding="utf-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-	<!-- ======== View root element ======== -->
+	<!-- ======== View root xs:element ======== -->
 
-	<element name="view">
-		<complexType>
-			<sequence>
-				<element ref="positions" minOccurs="0"/>
-				<element ref="resources" minOccurs="0"/>
-				<element ref="buildings" minOccurs="0"/>
-			</sequence>
-			<attributeGroup ref="viewattrs"/>
-		</complexType>
-	</element>
+	<xs:element name="view">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="positions"/>
+				<xs:element ref="resources"/>
+				<xs:element ref="buildings" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="viewattrs"/>
+		</xs:complexType>
+	</xs:element>
 
 	<!-- ======== Standard datasets ======== -->
 
-	<!-- Buildings data - contains buildings for one orb -->
-	<element name="buildings">
-		<complexType>
-			<sequence>
-				<element ref="building" maxOccurs="unbounded"/>
-			</sequence>
-		</complexType>
-	</element>
+	<!-- Position data - contains all positions a player owns -->
+	<xs:element name="positions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="position" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="curg" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="curs" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="curo" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="curc" type="xs:positiveInteger" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Resources data - contains resources for one celb -->
+	<xs:element name="resources">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="resource" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Buildings data - contains buildings for one celb -->
+	<xs:element name="buildings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="building" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 
 	<!-- ======== View elements ======== -->
 
+	<!-- Single position -->
+	<xs:element name="position">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="galaxy" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="solsys" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="orbit" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="celb" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="tid" type="xs:string" use="required"/>
+			<xs:attribute name="tname" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Single resource -->
+	<xs:element name="resource">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="present" type="xs:nonNegativeInteger" use="required"/>
+			<xs:attribute name="storage" type="xs:nonNegativeInteger" use="required"/>
+			<xs:attribute name="produced" type="xs:nonNegativeInteger" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
 	<!-- Single building -->
-	<element name="building">
-		<complexType ref="fixedobj"/>
-	</element>
+	<xs:element name="building" type="fixedobj"/>
+
+	<!-- Single cost for building / ship / technology... -->
+	<xs:element name="cost">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:positiveInteger" use="required"/>
+		</xs:complexType>
+	</xs:element>
 
 	<!-- ======== Attributes and types ======== -->
 
 	<!-- Default view attributes -->
-	<attributeGroup name="viewattrs">
-		<attribute name="lang" type="language" use="required"/>
-		<attribute name="servertime" type="positiveInteger" use="required"/>
-		<attribute name="session" type="hexBinary" use="required"/>
-		<attribute name="xslt" type="anyURI" default=""/>
-		<attribute name="css" type="anyURI" default=""/>
-	</attributeGroup>
+	<xs:attributeGroup name="viewattrs">
+		<xs:attribute name="lang" type="xs:language" use="required"/>
+		<xs:attribute name="servertime" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="session" type="xs:hexBinary" use="required"/>
+		<xs:attribute name="xslt" type="xs:anyURI" default=""/>
+		<xs:attribute name="css" type="xs:anyURI" default=""/>
+	</xs:attributeGroup>
 
 	<!-- Complex type for fixed object (building, research...) -->
-	<complexType name="fixedobj">
-		<sequence>
-			<element ref="cost" maxOccurs="unbounded"/>
-			<element ref="description"/>
-		</sequence>
-		<attribute name="id" type="string" use="required"/>
-		<attribute name="name" type="string" use="required"/>
-		<attribute name="time" type="integer" default="0"/>
-		<attribute name="curlevel" type="integer" default="0"/>
-		<attribute name="planlevel" type="integer" default="0"/>
-	</complexType>
-</schema>
+	<xs:complexType name="fixedobj">
+		<xs:sequence>
+			<xs:element ref="cost" maxOccurs="unbounded"/>
+			<!-- <xs:element ref="description"/> -->
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="time" type="xs:nonNegativeInteger" use="required"/>
+		<xs:attribute name="curlevel" type="xs:nonNegativeInteger" use="required"/>
+		<xs:attribute name="planlevel" type="xs:nonNegativeInteger" use="required"/>
+	</xs:complexType>
+</xs:schema>
