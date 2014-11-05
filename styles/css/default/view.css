@@ -109,6 +109,14 @@ div#logo
 	padding: 0px;
 }
 
+/* Position selector */
+
+td.poslist
+{
+	background-color: #000040;
+	text-align: left;
+}
+
 /* Resource table */
 
 span.resbad
