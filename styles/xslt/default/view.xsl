@@ -6,6 +6,7 @@
 		<html>
 			<head>
 				<title>OpenSpaceGame</title>
+				<link rel="stylesheet" type="text/css" href="{concat(@css, 'view.css')}"/>
 			</head>
 			<body>
 				<div id="menu">

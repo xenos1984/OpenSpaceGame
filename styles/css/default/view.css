@@ -1,0 +1,141 @@
+/* General styles */
+
+a, p, th, td, li, input, div, textarea, pre, select, option, span
+{
+	font-family: Liberation Sans, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: white;
+}
+
+td, th
+{
+	background-color: #000030;
+}
+
+html, body, div
+{
+	background-color: #000040;
+}
+
+body
+{
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+input, textarea, select, option
+{
+	background-color: #000040;
+	border: 1px #000080 solid;
+}
+
+/* Page layout */
+
+div#menu
+{
+	position: fixed;
+	left: 12px;
+	top: 12px;
+}
+
+div#postab
+{
+	position: fixed;
+	right: 12px;
+	top: 100px;
+}
+
+div#poslist
+{
+	position: absolute;
+	left: 132px;
+	top: 12px;
+}
+
+div#restab
+{
+	position: absolute;
+	left: 480px;
+	top: 12px;
+}
+
+div#content
+{
+	position: absolute;
+	left: 132px;
+	right: 90px;
+	top: 100px;
+	bottom: 0px;
+	overflow: visible;
+	scrollbars: none;
+}
+
+div#logo
+{
+	position: fixed;
+	top: 12px;
+	right: 12px;
+	height: 80px;
+	width: 100px;
+}
+
+/* Celestial bodys */
+
+*.possmall, *.sunsmall
+{
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 32px;
+	width: 32px;
+	padding: 0px;
+}
+
+*.posmed, *.sunmed
+{
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 64px;
+	width: 64px;
+	padding: 0px;
+}
+
+*.poslarge, *.sunlarge
+{
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 256px;
+	width: 256px;
+	padding: 0px;
+}
+
+/* Resource table */
+
+span.resbad
+{
+	color: red;
+}
+
+span.resgood
+{
+	color: lime;
+}
+
+td.resname
+{
+	font-weight: bold;
+}
+
+td.resname, td.respic, td.resvalue
+{
+	text-align:center;
+	background-color: #000040;
+}
+
+td.respic
+{
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 22px;
+	width: 42px;
+}
