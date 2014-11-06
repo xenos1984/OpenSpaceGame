@@ -3,10 +3,11 @@
 	<xsl:output method="html" omit-xml-declaration="yes" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
 
 	<xsl:variable name="i18n" select="document('i18n.xml')"/>
+	<xsl:variable name="lang" select="/view/@lang"/>
+	<xsl:variable name="session" select="/view/@session"/>
 
 	<xsl:template match="view">
 		<xsl:variable name="curpos" select="positions/position[@galaxy = /view/positions/@curg and @solsys = /view/positions/@curs and @orbit = /view/positions/@curo and @celb = /view/positions/@curc]"/>
-		<xsl:variable name="lang" select="@lang"/>
 		<html>
 			<head>
 				<title>OpenSpaceGame</title>
@@ -15,8 +16,82 @@
 			<body>
 				<div id="menu">
 					<table class="menutab">
-						<tr><td class="menu"><a class="menulink" accesskey="o" href="view.php?view=overview&amp;session={@session}"><xsl:value-of select="$i18n/i18n/trans[@lang = $lang and @key = 'menu_ov']"/></a></td></tr>
-						<tr><td class="menu"><a class="menulink" accesskey="e" href="view.php?view=empire&amp;session={@session}"><xsl:value-of select="$i18n/i18n/trans[@lang = $lang and @key = 'menu_em']"/></a></td></tr>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">o</xsl:with-param>
+							<xsl:with-param name="vname">overview</xsl:with-param>
+							<xsl:with-param name="lkey">menu_ov</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">e</xsl:with-param>
+							<xsl:with-param name="vname">empire</xsl:with-param>
+							<xsl:with-param name="lkey">menu_em</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">b</xsl:with-param>
+							<xsl:with-param name="vname">buildings</xsl:with-param>
+							<xsl:with-param name="lkey">menu_bld</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">s</xsl:with-param>
+							<xsl:with-param name="vname">ships</xsl:with-param>
+							<xsl:with-param name="lkey">menu_sh</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">f</xsl:with-param>
+							<xsl:with-param name="vname">fleets</xsl:with-param>
+							<xsl:with-param name="lkey">menu_fl</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">d</xsl:with-param>
+							<xsl:with-param name="vname">defense</xsl:with-param>
+							<xsl:with-param name="lkey">menu_def</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">i</xsl:with-param>
+							<xsl:with-param name="vname">missiles</xsl:with-param>
+							<xsl:with-param name="lkey">menu_mi</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">c</xsl:with-param>
+							<xsl:with-param name="vname">resources</xsl:with-param>
+							<xsl:with-param name="lkey">menu_ro</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">r</xsl:with-param>
+							<xsl:with-param name="vname">research</xsl:with-param>
+							<xsl:with-param name="lkey">menu_rs</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">t</xsl:with-param>
+							<xsl:with-param name="vname">techs</xsl:with-param>
+							<xsl:with-param name="lkey">menu_te</xsl:with-param>
+						</xsl:call-template>
+						<tr><td class="menuspace"></td></tr>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">m</xsl:with-param>
+							<xsl:with-param name="vname">messages</xsl:with-param>
+							<xsl:with-param name="lkey">menu_me</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">n</xsl:with-param>
+							<xsl:with-param name="vname">notes</xsl:with-param>
+							<xsl:with-param name="lkey">menu_no</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">a</xsl:with-param>
+							<xsl:with-param name="vname">alliance</xsl:with-param>
+							<xsl:with-param name="lkey">menu_al</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">y</xsl:with-param>
+							<xsl:with-param name="vname">diplomacy</xsl:with-param>
+							<xsl:with-param name="lkey">menu_di</xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="menuitem">
+							<xsl:with-param name="akey">k</xsl:with-param>
+							<xsl:with-param name="vname">market</xsl:with-param>
+							<xsl:with-param name="lkey">menu_ma</xsl:with-param>
+						</xsl:call-template>
 					</table>
 				</div>
 				<div id="poslist">
@@ -130,12 +205,41 @@
 
 	<xsl:template name="coords">
 		<xsl:param name="pos"/>
-		<xsl:text>[</xsl:text><xsl:value-of select="$pos/@galaxy"/><xsl:text>:</xsl:text><xsl:value-of select="$pos/@solsys"/><xsl:text>:</xsl:text><xsl:value-of select="$pos/@orbit"/><xsl:text>:</xsl:text><xsl:value-of select="$pos/@celb"/><xsl:text>]</xsl:text>
+		<xsl:text>[</xsl:text>
+		<xsl:value-of select="$pos/@galaxy"/>
+		<xsl:text>:</xsl:text>
+		<xsl:value-of select="$pos/@solsys"/>
+		<xsl:text>:</xsl:text>
+		<xsl:value-of select="$pos/@orbit"/>
+		<xsl:text>:</xsl:text>
+		<xsl:value-of select="$pos/@celb"/>
+		<xsl:text>]</xsl:text>
 	</xsl:template>
 
 	<xsl:template name="jumplink">
 		<xsl:param name="pos"/>
-		<xsl:text>location.href = location.href + '&amp;pos=</xsl:text><xsl:value-of select="$pos/@galaxy"/><xsl:text>:</xsl:text><xsl:value-of select="$pos/@solsys"/><xsl:text>:</xsl:text><xsl:value-of select="$pos/@orbit"/><xsl:text>:</xsl:text><xsl:value-of select="$pos/@celb"/><xsl:text>'</xsl:text>
+		<xsl:text>location.href = location.href + '&amp;pos=</xsl:text>
+		<xsl:value-of select="$pos/@galaxy"/>
+		<xsl:text>:</xsl:text>
+		<xsl:value-of select="$pos/@solsys"/>
+		<xsl:text>:</xsl:text>
+		<xsl:value-of select="$pos/@orbit"/>
+		<xsl:text>:</xsl:text>
+		<xsl:value-of select="$pos/@celb"/>
+		<xsl:text>'</xsl:text>
+	</xsl:template>
+
+	<xsl:template name="menuitem">
+		<xsl:param name="akey"/>
+		<xsl:param name="vname"/>
+		<xsl:param name="lkey"/>
+		<tr>
+			<td class="menu">
+				<a class="menulink" accesskey="{$akey}" href="view.php?view={$vname}&amp;session={$session}">
+					<xsl:value-of select="$i18n/i18n/trans[@lang = $lang and @key = $lkey]"/>
+				</a>
+			</td>
+		</tr>
 	</xsl:template>
 
 </xsl:stylesheet>

@@ -4,4 +4,30 @@
 	<trans lang="de" key="menu_ov">Übersicht</trans>
 	<trans lang="en" key="menu_em">Empire</trans>
 	<trans lang="de" key="menu_em">Imperium</trans>
+	<trans lang="en" key="menu_bld">Builings</trans>
+	<trans lang="de" key="menu_bld">Gebäude</trans>
+	<trans lang="en" key="menu_sh">Ships</trans>
+	<trans lang="de" key="menu_sh">Schiffe</trans>
+	<trans lang="en" key="menu_fl">Fleets</trans>
+	<trans lang="de" key="menu_fl">Flotten</trans>
+	<trans lang="en" key="menu_def">Defense</trans>
+	<trans lang="de" key="menu_def">Verteidigung</trans>
+	<trans lang="en" key="menu_mi">Missiles</trans>
+	<trans lang="de" key="menu_mi">Raketen</trans>
+	<trans lang="en" key="menu_ro">Resources</trans>
+	<trans lang="de" key="menu_ro">Rohstoffe</trans>
+	<trans lang="en" key="menu_rs">Research</trans>
+	<trans lang="de" key="menu_rs">Forschung</trans>
+	<trans lang="en" key="menu_te">Technologies</trans>
+	<trans lang="de" key="menu_te">Technologien</trans>
+	<trans lang="en" key="menu_me">Messages</trans>
+	<trans lang="de" key="menu_me">Nachrichten</trans>
+	<trans lang="en" key="menu_no">Notes</trans>
+	<trans lang="de" key="menu_no">Notizen</trans>
+	<trans lang="en" key="menu_al">Alliance</trans>
+	<trans lang="de" key="menu_al">Allianz</trans>
+	<trans lang="en" key="menu_di">Diplomacy</trans>
+	<trans lang="de" key="menu_di">Diplomatie</trans>
+	<trans lang="en" key="menu_ma">Market</trans>
+	<trans lang="de" key="menu_ma">Markt</trans>
 </i18n>
