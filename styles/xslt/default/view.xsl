@@ -2,9 +2,10 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" omit-xml-declaration="yes" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
 
-	<xsl:variable name="i18n" select="document('i18n.xml')"/>
-	<xsl:variable name="lang" select="/view/@lang"/>
 	<xsl:variable name="session" select="/view/@session"/>
+	<xsl:variable name="lang" select="/view/@lang"/>
+	<xsl:variable name="i18n" select="document('i18n.xml')/i18n"/>
+	<xsl:variable name="trans" select="$i18n/trans[position() = 1 or @lang = $lang][last()]/phrase"/>
 
 	<xsl:template match="view">
 		<xsl:variable name="curpos" select="positions/position[@galaxy = /view/positions/@curg and @solsys = /view/positions/@curs and @orbit = /view/positions/@curo and @celb = /view/positions/@curc]"/>
@@ -198,6 +199,7 @@
 				</div>
 				<div id="logo"/>
 				<div id="content">
+					<xsl:apply-templates select="buildings"/>
 				</div>
 			</body>
 		</html>
@@ -236,7 +238,7 @@
 		<tr>
 			<td class="menu">
 				<a class="menulink" accesskey="{$akey}" href="view.php?view={$vname}&amp;session={$session}">
-					<xsl:value-of select="$i18n/i18n/trans[@lang = $lang and @key = $lkey]"/>
+					<xsl:copy-of select="$trans[@key = $lkey]"/>
 				</a>
 			</td>
 		</tr>

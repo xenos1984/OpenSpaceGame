@@ -1,33 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <i18n>
-	<trans lang="en" key="menu_ov">Overview</trans>
-	<trans lang="de" key="menu_ov">Übersicht</trans>
-	<trans lang="en" key="menu_em">Empire</trans>
-	<trans lang="de" key="menu_em">Imperium</trans>
-	<trans lang="en" key="menu_bld">Builings</trans>
-	<trans lang="de" key="menu_bld">Gebäude</trans>
-	<trans lang="en" key="menu_sh">Ships</trans>
-	<trans lang="de" key="menu_sh">Schiffe</trans>
-	<trans lang="en" key="menu_fl">Fleets</trans>
-	<trans lang="de" key="menu_fl">Flotten</trans>
-	<trans lang="en" key="menu_def">Defense</trans>
-	<trans lang="de" key="menu_def">Verteidigung</trans>
-	<trans lang="en" key="menu_mi">Missiles</trans>
-	<trans lang="de" key="menu_mi">Raketen</trans>
-	<trans lang="en" key="menu_ro">Resources</trans>
-	<trans lang="de" key="menu_ro">Rohstoffe</trans>
-	<trans lang="en" key="menu_rs">Research</trans>
-	<trans lang="de" key="menu_rs">Forschung</trans>
-	<trans lang="en" key="menu_te">Technologies</trans>
-	<trans lang="de" key="menu_te">Technologien</trans>
-	<trans lang="en" key="menu_me">Messages</trans>
-	<trans lang="de" key="menu_me">Nachrichten</trans>
-	<trans lang="en" key="menu_no">Notes</trans>
-	<trans lang="de" key="menu_no">Notizen</trans>
-	<trans lang="en" key="menu_al">Alliance</trans>
-	<trans lang="de" key="menu_al">Allianz</trans>
-	<trans lang="en" key="menu_di">Diplomacy</trans>
-	<trans lang="de" key="menu_di">Diplomatie</trans>
-	<trans lang="en" key="menu_ma">Market</trans>
-	<trans lang="de" key="menu_ma">Markt</trans>
+	<trans lang="en">
+		<phrase key="menu_ov">Overview</phrase>
+		<phrase key="menu_em">Empire</phrase>
+		<phrase key="menu_bld">Buildings</phrase>
+		<phrase key="menu_sh">Ships</phrase>
+		<phrase key="menu_fl">Fleets</phrase>
+		<phrase key="menu_def">Defense</phrase>
+		<phrase key="menu_mi">Missiles</phrase>
+		<phrase key="menu_ro">Resources</phrase>
+		<phrase key="menu_rs">Research</phrase>
+		<phrase key="menu_te">Technologies</phrase>
+		<phrase key="menu_no">Notes</phrase>
+		<phrase key="menu_me">Messages</phrase>
+		<phrase key="menu_al">Alliance</phrase>
+		<phrase key="menu_di">Diplomacy</phrase>
+		<phrase key="menu_ma">Market</phrase>
+
+		<phrase key="name">Name</phrase>
+		<phrase key="level">Level</phrase>
+		<phrase key="planned">Planned</phrase>
+		<phrase key="costs">Costs</phrase>
+		<phrase key="req">Required</phrase>
+		<phrase key="dur">Duration</phrase>
+	</trans>
+
+	<trans lang="de">
+		<phrase key="menu_ov">Übersicht</phrase>
+		<phrase key="menu_em">Imperium</phrase>
+		<phrase key="menu_bld">Gebäude</phrase>
+		<phrase key="menu_sh">Schiffe</phrase>
+		<phrase key="menu_fl">Flotten</phrase>
+		<phrase key="menu_def">Verteidigung</phrase>
+		<phrase key="menu_mi">Raketen</phrase>
+		<phrase key="menu_ro">Rohstoffe</phrase>
+		<phrase key="menu_rs">Forschung</phrase>
+		<phrase key="menu_te">Technologien</phrase>
+		<phrase key="menu_me">Nachrichten</phrase>
+		<phrase key="menu_no">Notizen</phrase>
+		<phrase key="menu_al">Allianz</phrase>
+		<phrase key="menu_di">Diplomatie</phrase>
+		<phrase key="menu_ma">Markt</phrase>
+
+		<phrase key="name">Name</phrase>
+		<phrase key="level">Stufe</phrase>
+		<phrase key="planned">Geplant</phrase>
+		<phrase key="costs">Kosten</phrase>
+		<phrase key="req">Benötigt</phrase>
+		<phrase key="dur">Dauer</phrase>
+	</trans>
 </i18n>

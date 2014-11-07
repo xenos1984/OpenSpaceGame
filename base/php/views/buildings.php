@@ -20,7 +20,7 @@ class buildingsXML
 <resource id="hyd" name="Hydrogen" present="500" storage="1000" produced="10"/>
 </resources>
 <buildings>
-<building id="titm" name="Titanium mine" time="3600" curlevel="2" planlevel="2">
+<building id="titm" name="Titanium mine" time="3600" curlevel="2" planlevel="3">
 <cost id="tit" value="1800"/>
 <cost id="sil" value="900"/>
 </building>

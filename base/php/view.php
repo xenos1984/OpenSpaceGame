@@ -14,7 +14,7 @@ if(!$xml->schemaValidate("../xml/osgdata.xsd"))
 $xsl = new DOMDocument;
 $xsl->resolveExternals = true;
 $xsl->substituteEntities = true;
-$xsl->load("../../styles/xslt/default/view.xsl");
+$xsl->load("../../styles/xslt/default/" . $_GET['view'] . ".xsl");
 
 // Transform data to HTML.
 $proc = new XSLTProcessor;
