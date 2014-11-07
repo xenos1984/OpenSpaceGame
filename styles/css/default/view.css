@@ -175,3 +175,44 @@ td.respic
 	height: 22px;
 	width: 42px;
 }
+
+/* Tables and order lists */
+
+span.tabname
+{
+	font-weight: bold;
+}
+
+td.tabtext, th.tabtext, td.tabcost, th.tabcost, td.tabtime, th.tabtime, th.tabremain, td.costname td.listname, th.listname, td.liststart, th.liststart, td.liststop, th.liststop
+{
+	text-align: left;
+}
+
+td.tabaction, th.tabaction, td.tabcount, th.tabcount, td.tabmax, th.tabmax, input.tabcount, td.tabcur, th.tabcur, td.tabplan, th.tabplan, td.listcancel, td.tabnone, td.tabsubmit
+{
+	text-align: center;
+}
+
+table.orderlist
+{
+	margin-bottom: 20px;
+}
+
+td.tabimage
+{
+	height: 120px;
+	width: 120px;
+	padding: 0px;
+}
+
+td.costbad, td.costgood, td.costmiss, td.costremain
+{
+	text-align: right;
+}
+
+table.tablevar, table.tablefix, table.orderlist
+{
+	left: 0px;
+	right: 0px;
+	width: 100%;
+}
