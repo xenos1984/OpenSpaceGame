@@ -147,12 +147,12 @@ td.poslist
 
 /* Resource table */
 
-span.resbad
+td.resbad
 {
 	color: red;
 }
 
-span.resgood
+td.resgood
 {
 	color: lime;
 }
@@ -162,7 +162,7 @@ td.resname
 	font-weight: bold;
 }
 
-td.resname, td.respic, td.resvalue
+td.resname, td.respic, td.resgood, td.resbad
 {
 	text-align:center;
 	background-color: #000040;

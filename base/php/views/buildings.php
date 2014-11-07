@@ -17,7 +17,7 @@ class buildingsXML
 <resources>
 <resource id="tit" name="Titanium" present="3600" storage="10000" produced="100"/>
 <resource id="sil" name="Silicon" present="2000" storage="4000" produced="40"/>
-<resource id="hyd" name="Hydrogen" present="500" storage="1000" produced="10"/>
+<resource id="hyd" name="Hydrogen" present="1500" storage="1000" produced="10"/>
 </resources>
 <buildings>
 <building id="titm" name="Titanium mine" time="3600" curlevel="2" planlevel="3">

@@ -195,6 +195,19 @@
 								</td>
 							</xsl:for-each>
 						</tr>
+						<tr>
+							<xsl:for-each select="resources/resource">
+								<td>
+									<xsl:attribute name="class">
+										<xsl:choose>
+											<xsl:when test="@present &gt;= @storage">resbad</xsl:when>
+											<xsl:otherwise>resgood</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<xsl:value-of select="format-number(@present, '0')"/>
+								</td>
+							</xsl:for-each>
+						</tr>
 					</table>
 				</div>
 				<div id="logo"/>
