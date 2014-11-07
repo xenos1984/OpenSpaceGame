@@ -204,7 +204,7 @@
 											<xsl:otherwise>resgood</xsl:otherwise>
 										</xsl:choose>
 									</xsl:attribute>
-									<xsl:value-of select="format-number(@present, '0')"/>
+									<xsl:value-of select="@present"/>
 								</td>
 							</xsl:for-each>
 						</tr>
@@ -251,10 +251,29 @@
 		<tr>
 			<td class="menu">
 				<a class="menulink" accesskey="{$akey}" href="view.php?view={$vname}&amp;session={$session}">
-					<xsl:copy-of select="$trans[@key = $lkey]"/>
+					<xsl:value-of select="$trans[@key = $lkey]"/>
 				</a>
 			</td>
 		</tr>
+	</xsl:template>
+
+	<xsl:template name="time">
+		<xsl:param name="value"/>
+		<xsl:if test="$value &gt;= 86400">
+			<xsl:value-of select="($value - $value mod 86400) div 86400"/><xsl:text>d</xsl:text>
+			<xsl:if test="($value mod 86400) &gt; 0"><xsl:text> </xsl:text></xsl:if>
+		</xsl:if>
+		<xsl:if test="($value mod 86400) &gt;= 3600">
+			<xsl:value-of select="($value mod 86400 - $value mod 3600) div 3600"/><xsl:text>h</xsl:text>
+			<xsl:if test="($value mod 3600) &gt; 0"><xsl:text> </xsl:text></xsl:if>
+		</xsl:if>
+		<xsl:if test="($value mod 3600) &gt;= 60">
+			<xsl:value-of select="($value mod 3600 - $value mod 60) div 60"/><xsl:text>m</xsl:text>
+			<xsl:if test="($value mod 60) &gt; 0"><xsl:text> </xsl:text></xsl:if>
+		</xsl:if>
+		<xsl:if test="($value mod 60) &gt; 0">
+			<xsl:value-of select="$value mod 60"/><xsl:text>s</xsl:text>
+		</xsl:if>
 	</xsl:template>
 
 </xsl:stylesheet>

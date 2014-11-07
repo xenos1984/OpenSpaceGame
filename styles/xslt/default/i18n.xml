@@ -23,6 +23,9 @@
 		<phrase key="costs">Costs</phrase>
 		<phrase key="req">Required</phrase>
 		<phrase key="dur">Duration</phrase>
+		<phrase key="noorder">No orders possible.</phrase>
+		<phrase key="noprod">No production.</phrase>
+		<phrase key="notpos">Order not possible.</phrase>
 	</trans>
 
 	<trans lang="de">
@@ -48,5 +51,8 @@
 		<phrase key="costs">Kosten</phrase>
 		<phrase key="req">Benötigt</phrase>
 		<phrase key="dur">Dauer</phrase>
+		<phrase key="noorder">Keine Aufträge möglich.</phrase>
+		<phrase key="noprod">Keine Produktion.</phrase>
+		<phrase key="notpos">Auftrag nicht möglich.</phrase>
 	</trans>
 </i18n>

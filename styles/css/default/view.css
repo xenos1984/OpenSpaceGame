@@ -176,6 +176,23 @@ td.respic
 	width: 42px;
 }
 
+/* Building and research costs */
+
+.costbad, .costbad span
+{
+	color: red;
+}
+
+.costgood, .costgood span
+{
+	color: lime;
+}
+
+.costmiss, .costmiss span
+{
+	color: yellow;
+}
+
 /* Tables and order lists */
 
 span.tabname
