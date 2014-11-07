@@ -23,10 +23,12 @@ class buildingsXML
 <building id="titm" name="Titanium mine" time="3600" curlevel="2" planlevel="2">
 <cost id="tit" value="1800"/>
 <cost id="sil" value="900"/>
+<description>Titanium mines produce titanium.</description>
 </building>
 <building id="silm" name="Silicon mine" time="7200" curlevel="2" planlevel="2">
 <cost id="tit" value="4800"/>
 <cost id="sil" value="2400"/>
+<description>Silicon mines produce silicon.</description>
 </building>
 </buildings>
 </view>

@@ -8,11 +8,11 @@
 			<td class="tabtext" rowspan="{count($entry/cost)}">
 				<span class="tabname">
 					<xsl:value-of select="$entry/@name"/>
-				</span><!--
+				</span>
 				<br/>
 				<span class="tabdesc">
 					<xsl:value-of select="$entry/description"/>
-				</span>-->
+				</span>
 			</td>
 			<td class="tabcur" rowspan="{count($entry/cost)}">
 				<xsl:value-of select="$entry/@curlevel"/>

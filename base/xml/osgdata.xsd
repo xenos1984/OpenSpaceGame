@@ -84,6 +84,9 @@
 		</xs:complexType>
 	</xs:element>
 
+	<!-- Textual object description -->
+	<xs:element name="description" type="xs:string"/>
+
 	<!-- ======== Attributes and types ======== -->
 
 	<!-- Default view attributes -->
@@ -99,7 +102,7 @@
 	<xs:complexType name="fixedobj">
 		<xs:sequence>
 			<xs:element ref="cost" maxOccurs="unbounded"/>
-			<!-- <xs:element ref="description"/> -->
+			<xs:element ref="description"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string" use="required"/>
 		<xs:attribute name="name" type="xs:string" use="required"/>
