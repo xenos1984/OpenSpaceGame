@@ -90,11 +90,11 @@
 									<xsl:when test="@value &gt; $res/@storage">costbad</xsl:when>
 									<xsl:otherwise>costmiss</xsl:otherwise>
 								</xsl:choose>
-							</xsl:attribute><!--
+							</xsl:attribute>
 							<xsl:call-template name="countdown">
 								<xsl:with-param name="id" select="concat('prod', generate-id(.))"/>
-								<xsl:with-param name="value" select="/*/@servertime + floor(3600 * (@value - $res/@present) div $res/@produced)"/>
-							</xsl:call-template>-->
+								<xsl:with-param name="value" select="/view/@servertime + floor(3600 * (@value - $res/@present) div $res/@produced)"/>
+							</xsl:call-template>
 						</xsl:otherwise>
 					</xsl:choose>
 				</td>

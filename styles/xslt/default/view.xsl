@@ -13,6 +13,12 @@
 			<head>
 				<title>OpenSpaceGame</title>
 				<link rel="stylesheet" type="text/css" href="{concat(@css, 'view.css')}"/>
+				<script type="text/javascript" src="js/utilities.js"/>
+				<script type="text/javascript">
+					<xsl:text>servertime = </xsl:text>
+					<xsl:value-of select="@servertime"/>
+					<xsl:text>;</xsl:text>
+				</script>
 			</head>
 			<body>
 				<div id="menu">
@@ -214,6 +220,7 @@
 				<div id="content">
 					<xsl:apply-templates select="buildings"/>
 				</div>
+				<script type="text/javascript">countdown();</script>
 			</body>
 		</html>
 	</xsl:template>
@@ -274,6 +281,13 @@
 		<xsl:if test="($value mod 60) &gt; 0">
 			<xsl:value-of select="$value mod 60"/><xsl:text>s</xsl:text>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template name="countdown">
+		<xsl:param name="id"/>
+		<xsl:param name="value"/>
+		<span id="{$id}" title="{$value}"></span>
+		<script type="text/javascript">cdarray.push(&quot;<xsl:value-of select="$id"/>&quot;);</script>
 	</xsl:template>
 
 </xsl:stylesheet>
