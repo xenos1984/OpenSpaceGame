@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+	<!-- Game / universe root element. -->
+
+	<xs:element name="game">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="resources"/>
+				<xs:element ref="translations" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
 	<!-- Resource type list. -->
 
 	<xsl:element name="resources">
@@ -24,7 +35,7 @@
 
 	<!-- Translation for a single language. -->
 
-	<xsl:element name="translations" maxOccurs="unbounded">
+	<xsl:element name="translations">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="translation" maxOccurs="unbounded"/>

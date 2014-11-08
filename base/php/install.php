@@ -6,6 +6,7 @@
 <h1>OpenSpaceGame Setup</h1>
 <?php
 	include_once("install/createdb.php");
+	include_once("install/creategame.php");
 ?>
 </body>
 </html>
