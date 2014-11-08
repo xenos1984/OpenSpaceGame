@@ -26,7 +26,7 @@ maketable("translation", array(
 	array("lang", "VARCHAR(8)", "NOT NULL"),
 	array("id", "VARCHAR(16)", "NOT NULL"),
 	array("name", "VARCHAR(64)", "NOT NULL"),
-	array("description", "TEXT")));
+	array("descr", "TEXT")));
 
 echo "</ul>\n";
 

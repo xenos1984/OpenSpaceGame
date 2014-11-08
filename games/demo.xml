@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<game>
+	<translations lang="en-US">
+		<translation id="resTI" name="Titanium">Titanium is the most important resource for the construction of spaceships and buildings.</translation>
+		<translation id="resSi" name="Silicon">Silicon is required for constructing computer systems and electronic circuits.</translation>
+		<translation id="resDe" name="Deuterium">Deuterium is the most important energy supply for nuclear fusion and used as fuel for most spaceships.</translation>
+		<translation id="resAM" name="Antimatter">Antimatter is a highy efficient energy source, which is difficult to produce and store.</translation>
+	</translations>
+
+	<translations lang="de-DE">
+		<translation id="resTi" name="Titan">Titan ist der wichtigste Rohstoff für tragende Strukturen von Raumschiffen und Gebäuden.</translation>
+		<translation id="resSi" name="Silizium">Silizium wird zum Bau von Computersystemen und Schaltkreisen benötigt.</translation>
+		<translation id="resDe" name="Deuterium">Deuterium ist der wichtigste Energieträger für die Kernfusion und dient als Treibstoff für die meisten Raumschiffe.</translation>
+		<translation id="resAM" name="Antimaterie">Antimaterie ist ein hocheffizienter Energieträger, der nur schwer herzustellen und zu lagern ist.</translation>
+	</translations>
+</game>

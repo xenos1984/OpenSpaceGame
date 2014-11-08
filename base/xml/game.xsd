@@ -6,7 +6,7 @@
 	<xs:element name="game">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="resources"/>
+				<!--<xs:element ref="resources"/>-->
 				<xs:element ref="translations" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
