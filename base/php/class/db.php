@@ -3,14 +3,21 @@
 
 	class db
 	{
-		public static $pdo;
+		private static $pdo;
 
-		public static function exec($cmd)
+		public static function init()
+		{
+			global $database;
+
+			self::$pdo = new PDO($database["database"], $database["user"], $database["password"]);
+		}
+
+		private static function exec($cmd)
 		{
 			return(self::$pdo->exec($cmd));
 		}
 
-		public static function query($cmd)
+		private static function query($cmd)
 		{
 			return(self::$pdo->query($cmd));
 		}
@@ -33,5 +40,5 @@
 		}
 	}
 
-	db::$pdo = new PDO($database["database"], $database["user"], $database["password"]);
+	db::init();
 ?>
