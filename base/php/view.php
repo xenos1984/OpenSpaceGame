@@ -7,7 +7,7 @@ if(!file_exists("views/" . $_GET['view'] . ".php"))
 // Include it and generate XML data.
 include("views/" . $_GET['view'] . ".php");
 $xml = $xmlgen->generateXML();
-if(!$xml->schemaValidate("../xml/osgdata.xsd"))
+if(!$xml->schemaValidate("../xml/view.xsd"))
 	die("ERROR: Invalid XML generated!");
 
 // Load XSLT style.
