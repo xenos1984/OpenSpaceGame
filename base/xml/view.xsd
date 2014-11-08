@@ -10,7 +10,11 @@
 				<xs:element ref="resources"/>
 				<xs:element ref="buildings" minOccurs="0"/>
 			</xs:sequence>
-			<xs:attributeGroup ref="viewattrs"/>
+			<xs:attribute name="lang" type="xs:language" use="required"/>
+			<xs:attribute name="servertime" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="session" type="xs:hexBinary" use="required"/>
+			<xs:attribute name="xslt" type="xs:anyURI" default=""/>
+			<xs:attribute name="css" type="xs:anyURI" default=""/>
 		</xs:complexType>
 	</xs:element>
 
@@ -88,15 +92,6 @@
 	<xs:element name="description" type="xs:string"/>
 
 	<!-- ======== Attributes and types ======== -->
-
-	<!-- Default view attributes -->
-	<xs:attributeGroup name="viewattrs">
-		<xs:attribute name="lang" type="xs:language" use="required"/>
-		<xs:attribute name="servertime" type="xs:positiveInteger" use="required"/>
-		<xs:attribute name="session" type="xs:hexBinary" use="required"/>
-		<xs:attribute name="xslt" type="xs:anyURI" default=""/>
-		<xs:attribute name="css" type="xs:anyURI" default=""/>
-	</xs:attributeGroup>
 
 	<!-- Complex type for fixed object (building, research...) -->
 	<xs:complexType name="fixedobj">
