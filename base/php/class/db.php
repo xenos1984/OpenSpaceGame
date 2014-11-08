@@ -22,8 +22,14 @@
 
 		public static function create_table($name, $columns)
 		{
-			$cmd = "CREATE TABLE {$database['prefix']}$name (" .  implode(", ", $columns) . ")";
-			return(self::exec($cmd));
+			global $database;
+
+			$cols = array();
+			foreach($columns as $column)
+				$cols[] = implode(" ", $column);
+
+			self::exec("DROP TABLE {$database['prefix']}$name");
+			return(self::exec("CREATE TABLE {$database['prefix']}$name (" .  implode(", ", $cols) . ")"));
 		}
 	}
 
