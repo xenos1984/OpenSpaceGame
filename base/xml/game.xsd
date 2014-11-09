@@ -6,9 +6,9 @@
 	<xs:element name="game">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="resource" maxOccurs="unbounded"/><!--
+				<xs:element ref="resource" maxOccurs="unbounded"/>
 				<xs:element ref="celbtype" maxOccurs="unbounded"/>
-				<xs:element ref="building" maxOccurs="unbounded"/>-->
+				<xs:element ref="building" maxOccurs="unbounded"/>
 				<xs:element ref="translations" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -26,31 +26,47 @@
 	</xs:element>
 
 	<!-- Celestial body type. -->
-<!--
+
 	<xs:element name="celbtype">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
-	-->
+
 	<!-- Building. -->
-<!--
+
 	<xs:element name="building">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="buildon" maxOccurs="unbounded"/>
+				<xs:element name="buildon" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
 				<xs:element ref="cost" maxOccurs="unbounded"/>
 				<xs:element ref="prebld" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="prersc" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="product" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="storage" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="product" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:string" use="required"/>
+						<xs:attribute name="value" type="xs:float" default="0"/>
+						<xs:attribute name="power" type="xs:float" default="1"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="storage" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:string" use="required"/>
+						<xs:attribute name="value" type="xs:float" default="0"/>
+						<xs:attribute name="power" type="xs:float" default="1"/>
+					</xs:complexType>
+				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="time" type="xs:positiveInteger" use="required"/>
 			<xs:attribute name="factor" type="xs:positiveInteger" use="required"/>
 		</xs:complexType>
 	</xs:element>
-	-->
+
 	<!-- Translation for a single language. -->
 
 	<xs:element name="translations">
