@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <game>
-	<resources>
-		<resource id="resTi" value="50000" product="250" storage="100000"/>
-		<resource id="resSi" value="25000" product="125" storage="100000"/>
-		<resource id="resDe"/>
-		<resource id="resAM"/>
-	</resources>
+	<resource id="resTi" value="50000" product="250" storage="100000"/>
+	<resource id="resSi" value="25000" product="125" storage="100000"/>
+	<resource id="resDe"/>
+	<resource id="resAM"/>
 
 	<translations lang="en-US">
 		<translation id="resTI" name="Titanium">Titanium is the most important resource for the construction of spaceships and buildings.</translation>

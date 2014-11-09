@@ -6,24 +6,15 @@
 	<xs:element name="game">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="resources"/>
-				<xs:element ref="celbtypes"/>
+				<xs:element ref="resource" maxOccurs="unbounded"/><!--
+				<xs:element ref="celbtype" maxOccurs="unbounded"/>
+				<xs:element ref="building" maxOccurs="unbounded"/>-->
 				<xs:element ref="translations" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 
-	<!-- Resource type list. -->
-
-	<xs:element name="resources">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="resource" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-
-	<!-- Single resource type. -->
+	<!-- Resource type. -->
 
 	<xs:element name="resource">
 		<xs:complexType>
@@ -34,36 +25,16 @@
 		</xs:complexType>
 	</xs:element>
 
-	<!-- List of celestial body types. -->
-
-	<xs:element name="celbtypes">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="celbtype" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-
-	<!-- Single celestial body type. -->
-
+	<!-- Celestial body type. -->
+<!--
 	<xs:element name="celbtype">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
-
-	<!-- Building list. -->
-
-	<xs:element name="buildings">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="building" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-
-	<!-- Single building. -->
-
+	-->
+	<!-- Building. -->
+<!--
 	<xs:element name="building">
 		<xs:complexType>
 			<xs:sequence>
@@ -79,7 +50,7 @@
 			<xs:attribute name="factor" type="xs:positiveInteger" use="required"/>
 		</xs:complexType>
 	</xs:element>
-
+	-->
 	<!-- Translation for a single language. -->
 
 	<xs:element name="translations">
