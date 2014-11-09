@@ -7,6 +7,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="resources"/>
+				<xs:element ref="celbtypes"/>
 				<xs:element ref="translations" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -30,6 +31,24 @@
 			<xs:attribute name="value" type="xs:integer" default="0"/>
 			<xs:attribute name="product" type="xs:integer" default="0"/>
 			<xs:attribute name="storage" type="xs:integer" default="0"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- List of celestial body types. -->
+
+	<xs:element name="celbtypes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="celbtype" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Single celestial body type. -->
+
+	<xs:element name="celbtype">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
 

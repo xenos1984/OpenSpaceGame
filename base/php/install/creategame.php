@@ -35,7 +35,7 @@ foreach($languages as $language)
 }
 echo '<span style="color:lime">Success.</span></li>' . "\n";
 
-echo "<li>Create translations... ";
+echo "<li>Create resources... ";
 $ress = $xpath->query("/game/resources/resource");
 foreach($ress as $res)
 {
