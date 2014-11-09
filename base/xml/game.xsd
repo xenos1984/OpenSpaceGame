@@ -52,6 +52,34 @@
 		</xs:complexType>
 	</xs:element>
 
+	<!-- Building list. -->
+
+	<xs:element name="buildings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="building" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Single building. -->
+
+	<xs:element name="building">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="buildon" maxOccurs="unbounded"/>
+				<xs:element ref="cost" maxOccurs="unbounded"/>
+				<xs:element ref="prebld" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="prersc" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="product" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="storage" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="time" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="factor" type="xs:positiveInteger" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
 	<!-- Translation for a single language. -->
 
 	<xs:element name="translations">
