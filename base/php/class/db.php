@@ -43,17 +43,12 @@
 		{
 			global $database;
 
-			$keys = array_column($entries, 0);
+			$keys = array_keys($entries);
 			$params = array_map( function($s) { return ':' . $s; }, $keys);
 			$stmt = self::$pdo->prepare("INSERT INTO $table (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $params) . ")");
 
-			foreach($entries as $entry)
-			{
-				if(count($entry) == 4)
-					$stmt->bindParam(':' . $entry[0], $entry[1], $entry[2], $entry[3]);
-				else
-					$stmt->bindParam(':' . $entry[0], $entry[1], $entry[2]);
-			}
+			foreach($entries as $key => $value)
+				$stmt->bindValue(':' . $key, $value);
 
 			return $stmt->execute();
 		}
