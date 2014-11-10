@@ -67,6 +67,34 @@
 		</xs:complexType>
 	</xs:element>
 
+	<!-- Single resource cost for a building, research, ship, defense or missile -->
+
+	<xs:element name="cost">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:float" default="0"/>
+			<xs:attribute name="factor" type="xs:float" default="1"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Required building -->
+
+	<xs:element name="prebld">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="level" type="xs:nonNegativeInteger" default="0"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Required research -->
+
+	<xs:element name="prersc">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="level" type="xs:nonNegativeInteger" default="0"/>
+		</xs:complexType>
+	</xs:element>
+
 	<!-- Translation for a single language. -->
 
 	<xs:element name="translations">
