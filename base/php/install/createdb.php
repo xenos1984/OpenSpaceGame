@@ -73,7 +73,7 @@ maketable("products", array(
 maketable("br_costs", array(
 	array("brid", "VARCHAR(16)", "NOT NULL"),
 	array("res", "VARCHAR(16)", "NOT NULL"),
-	array("cost", "REAL"),
+	array("value", "REAL"),
 	array("factor", "REAL"),
 	array("PRIMARY KEY", "(brid, res)")));
 

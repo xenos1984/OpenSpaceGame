@@ -1,9 +1,6 @@
 <?php
 include_once("config.php");
 include_once("class/db.php");
-include_once("class/trans.php");
-include_once("class/resource.php");
-include_once("class/building.php");
 
 echo "<h3>Create universe configuration</h3>\n";
 
@@ -31,7 +28,11 @@ foreach($languages as $language)
 		$name = $translation->getAttribute("name");
 		$descr = $xpath->evaluate("text()", $translation)->item(0)->wholeText;
 
-		trans::create($lang, $id, $name, $descr);
+		db::create_object('translation', array(
+			'lang' => $lang,
+			'id' => $id,
+			'name' => $name,
+			'descr' => $descr));
 	}
 }
 echo '<span style="color:lime">Success.</span></li>' . "\n";
@@ -45,7 +46,11 @@ foreach($ress as $res)
 	$product = $res->getAttribute("product") / 3600.0;
 	$storage = $res->getAttribute("storage");
 
-	resource::create($id, $value, $product, $storage);
+	db::create_object('resources', array(
+		'id' => $id,
+		'value' => $value,
+		'product' => $product,
+		'storage' => $storage));
 }
 echo '<span style="color:lime">Success.</span></li>' . "\n";
 
@@ -57,46 +62,62 @@ foreach($buildings as $building)
 	$time = $building->getAttribute("time");
 	$factor = $building->getAttribute("factor");
 
-	building::create($id, $time, $factor);/*
-	$build = new building($building_ids[$idName]);
+	db::create_object('buildings', array(
+		'id' => $id,
+		'time' => $time,
+		'factor' => $factor));
 
 	$buildons = $xpath->query("buildon", $building);
 	foreach($buildons as $buildon)
 	{
-		$orbType = $buildon->getAttribute("id");
+		$celb = $buildon->getAttribute("id");
 
-		$build->create_build_on($orb_ids[$orbType]);
+		db::create_object('buildon', array(
+			'building' => $id,
+			'celb' => $celb));
 	}
 
 	$costs = $xpath->query("cost", $building);
 	foreach($costs as $cost)
 	{
-		$ressId = $cost->getAttribute("id");
+		$res = $cost->getAttribute("id");
 		$value = $cost->getAttribute("value");
 		$factor = $cost->getAttribute("factor");
 
-		$build->create_cost($ress_ids[$ressId], $value, $factor);
+		db::create_object('br_costs', array(
+			'brid' => $id,
+			'res' => $res,
+			'value' => $value,
+			'factor' => $factor));
 	}
 
 	$products = $xpath->query("product", $building);
 	foreach($products as $product)
 	{
-		$ressId = $product->getAttribute("id");
+		$res = $product->getAttribute("id");
 		$value = $product->getAttribute("value") / 3600.0;
 		$power = $product->getAttribute("power");
 
-		$build->create_product($ress_ids[$ressId], $value, $power);
+		db::create_object('products', array(
+			'building' => $id,
+			'res' => $res,
+			'value' => $value,
+			'power' => $power));
 	}
 
 	$storages = $xpath->query("storage", $building);
 	foreach($storages as $storage)
 	{
-		$ressId = $storage->getAttribute("id");
+		$res = $storage->getAttribute("id");
 		$value = $storage->getAttribute("value");
 		$power = $storage->getAttribute("power");
 
-		$build->create_storage($ress_ids[$ressId], $value, $power);
-	}*/
+		db::create_object('storages', array(
+			'building' => $id,
+			'res' => $res,
+			'value' => $value,
+			'power' => $power));
+	}
 }
 echo '<span style="color:lime">Success.</span></li>' . "\n";
 
