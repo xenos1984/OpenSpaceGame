@@ -25,7 +25,7 @@ echo "<ul>\n";
 maketable("translation", array(
 	array("lang", "VARCHAR(8)", "NOT NULL"),
 	array("id", "VARCHAR(16)", "NOT NULL"),
-	array("name", "VARCHAR(64)", "NOT NULL"),
+	array("name", "VARCHAR(64)"),
 	array("descr", "TEXT"),
 	array("PRIMARY KEY", "(lang, id)")));
 
@@ -36,6 +36,38 @@ maketable("resources", array(
 	array("value", "REAL"),
 	array("storage", "REAL"),
 	array("product", "REAL")));
+
+// Universe information - buildings
+
+maketable("buildings", array(
+	array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
+	array("time", "REAL"),
+	array("factor", "REAL")));
+
+maketable("build_on", array(
+	array("celb", "VARCHAR(16)", "NOT NULL"),
+	array("building", "VARCHAR(16)", "NOT NULL")));
+
+maketable("building_costs", array(
+	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("cost", "REAL"),
+	array("factor", "REAL"),
+	array("PRIMARY KEY", "(building, res)")));
+
+maketable("building_storage", array(
+	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("value", "REAL"),
+	array("power", "REAL"),
+	array("PRIMARY KEY", "(building, res)")));
+
+maketable("building_product", array(
+	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("value", "REAL"),
+	array("power", "REAL"),
+	array("PRIMARY KEY", "(building, res)")));
 
 echo "</ul>\n";
 
