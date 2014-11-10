@@ -44,6 +44,13 @@ maketable("buildings", array(
 	array("time", "REAL"),
 	array("factor", "REAL")));
 
+// Universe information - researches
+
+maketable("researches", array(
+	array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
+	array("time", "REAL"),
+	array("factor", "REAL")));
+
 // Universe information - buildings allowed on celb type
 
 maketable("buildon", array(
