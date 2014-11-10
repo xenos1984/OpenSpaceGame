@@ -9,6 +9,7 @@
 				<xs:element ref="resource" maxOccurs="unbounded"/>
 				<xs:element ref="celbtype" maxOccurs="unbounded"/>
 				<xs:element ref="building" maxOccurs="unbounded"/>
+				<xs:element ref="research" maxOccurs="unbounded"/>
 				<xs:element ref="translations" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -43,9 +44,8 @@
 						<xs:attribute name="id" type="xs:string" use="required"/>
 					</xs:complexType>
 				</xs:element>
-				<xs:element ref="cost" maxOccurs="unbounded"/>
-				<xs:element ref="prebld" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="prersc" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="cost" type="brcost" maxOccurs="unbounded"/>
+				<xs:element ref="pretech" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="product" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:attribute name="id" type="xs:string" use="required"/>
@@ -67,28 +67,38 @@
 		</xs:complexType>
 	</xs:element>
 
-	<!-- Single resource cost for a building, research, ship, defense or missile -->
+	<!-- Research. -->
 
-	<xs:element name="cost">
+	<xs:element name="research">
 		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="cost" type="brcost" maxOccurs="unbounded"/>
+				<xs:element ref="pretech" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required"/>
-			<xs:attribute name="value" type="xs:float" default="0"/>
-			<xs:attribute name="factor" type="xs:float" default="1"/>
+			<xs:attribute name="time" type="xs:float" use="required"/>
+			<xs:attribute name="factor" type="xs:float" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
-	<!-- Required building -->
+	<!-- Single resource cost for a building or research -->
 
-	<xs:element name="prebld">
-		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" use="required"/>
-			<xs:attribute name="level" type="xs:nonNegativeInteger" default="0"/>
-		</xs:complexType>
-	</xs:element>
+	<xs:complexType name="brcost">
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="value" type="xs:float" default="0"/>
+		<xs:attribute name="factor" type="xs:float" default="1"/>
+	</xs:complexType>
 
-	<!-- Required research -->
+	<!-- Single resource cost for a defense or missile -->
 
-	<xs:element name="prersc">
+	<xs:complexType name="sdmcost">
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="value" type="xs:float" default="0"/>
+	</xs:complexType>
+
+	<!-- Required building or research -->
+
+	<xs:element name="pretech">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="level" type="xs:nonNegativeInteger" default="0"/>
