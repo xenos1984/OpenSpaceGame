@@ -19,9 +19,9 @@
 	<xs:element name="resource">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" use="required"/>
-			<xs:attribute name="value" type="xs:integer" default="0"/>
-			<xs:attribute name="product" type="xs:integer" default="0"/>
-			<xs:attribute name="storage" type="xs:integer" default="0"/>
+			<xs:attribute name="value" type="xs:float" default="0"/>
+			<xs:attribute name="product" type="xs:float" default="0"/>
+			<xs:attribute name="storage" type="xs:float" default="0"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -62,8 +62,8 @@
 				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required"/>
-			<xs:attribute name="time" type="xs:positiveInteger" use="required"/>
-			<xs:attribute name="factor" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="time" type="xs:float" use="required"/>
+			<xs:attribute name="factor" type="xs:float" use="required"/>
 		</xs:complexType>
 	</xs:element>
 

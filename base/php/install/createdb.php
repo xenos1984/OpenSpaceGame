@@ -29,13 +29,13 @@ maketable("translation", array(
 	array("descr", "TEXT"),
 	array("PRIMARY KEY", "(lang, id)")));
 
-	// Universe information - resources
+// Universe information - resources
 
-	maketable("resources", array(
-		array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
-		array("value", "BIGINT"),
-		array("storage", "BIGINT"),
-		array("product", "REAL")));
+maketable("resources", array(
+	array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
+	array("value", "REAL"),
+	array("storage", "REAL"),
+	array("product", "REAL")));
 
 echo "</ul>\n";
 

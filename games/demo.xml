@@ -5,8 +5,29 @@
 	<resource id="resDe"/>
 	<resource id="resAM"/>
 
+	<celbtype id="ctWat"/>
+	<celbtype id="ctSto"/>
+	<celbtype id="ctDes"/>
+	<celbtype id="ctGas"/>
+
+	<building id="bldMTi" time="240" factor="1.5">
+		<buildon id="ctSto"/>
+		<buildon id="ctDes"/>
+		<cost id="resTi" value="400" factor="1.5"/>
+		<cost id="resSi" value="200" factor="1.5"/>
+		<product id="resTi" value="1000" power="1.5"/>
+	</building>
+
+	<building id="bldMSi" time="240" factor="1.5">
+		<buildon id="ctSto"/>
+		<buildon id="ctDes"/>
+		<cost id="resTi" value="400" factor="1.5"/>
+		<cost id="resSi" value="200" factor="1.5"/>
+		<product id="resSi" value="500" power="1.5"/>
+	</building>
+
 	<translations lang="en-US">
-		<translation id="resTI" name="Titanium">Titanium is the most important resource for the construction of spaceships and buildings.</translation>
+		<translation id="resTi" name="Titanium">Titanium is the most important resource for the construction of spaceships and buildings.</translation>
 		<translation id="resSi" name="Silicon">Silicon is required for constructing computer systems and electronic circuits.</translation>
 		<translation id="resDe" name="Deuterium">Deuterium is the most important energy supply for nuclear fusion and used as fuel for most spaceships.</translation>
 		<translation id="resAM" name="Antimatter">Antimatter is a highy efficient energy source, which is difficult to produce and store.</translation>
