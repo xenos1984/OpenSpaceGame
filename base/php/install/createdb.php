@@ -44,30 +44,46 @@ maketable("buildings", array(
 	array("time", "REAL"),
 	array("factor", "REAL")));
 
-maketable("build_on", array(
+// Universe information - buildings allowed on celb type
+
+maketable("buildon", array(
 	array("celb", "VARCHAR(16)", "NOT NULL"),
 	array("building", "VARCHAR(16)", "NOT NULL")));
 
-maketable("building_costs", array(
+// Universe information - storage capacity of buildings
+
+maketable("storages", array(
 	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("value", "REAL"),
+	array("power", "REAL"),
+	array("PRIMARY KEY", "(building, res)")));
+
+// Universe information - resource production of buildings
+
+maketable("products", array(
+	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("value", "REAL"),
+	array("power", "REAL"),
+	array("PRIMARY KEY", "(building, res)")));
+
+// Universe information - costs for buildings and research (leveled objects)
+
+maketable("br_costs", array(
+	array("brid", "VARCHAR(16)", "NOT NULL"),
 	array("res", "VARCHAR(16)", "NOT NULL"),
 	array("cost", "REAL"),
 	array("factor", "REAL"),
-	array("PRIMARY KEY", "(building, res)")));
+	array("PRIMARY KEY", "(brid, res)")));
 
-maketable("building_storage", array(
-	array("building", "VARCHAR(16)", "NOT NULL"),
-	array("res", "VARCHAR(16)", "NOT NULL"),
-	array("value", "REAL"),
-	array("power", "REAL"),
-	array("PRIMARY KEY", "(building, res)")));
+// Universe information - costs for ships, defense and missiles (mass objects)
 
-maketable("building_product", array(
-	array("building", "VARCHAR(16)", "NOT NULL"),
+maketable("sdm_costs", array(
+	array("sdmid", "VARCHAR(16)", "NOT NULL"),
 	array("res", "VARCHAR(16)", "NOT NULL"),
-	array("value", "REAL"),
-	array("power", "REAL"),
-	array("PRIMARY KEY", "(building, res)")));
+	array("cost", "REAL"),
+	array("PRIMARY KEY", "(sdmid, res)")));
 
 echo "</ul>\n";
 
