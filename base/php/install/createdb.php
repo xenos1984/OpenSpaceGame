@@ -92,6 +92,19 @@ maketable("sdm_costs", array(
 	array("cost", "REAL"),
 	array("PRIMARY KEY", "(sdmid, res)")));
 
+// Players
+
+maketable("player", array(
+	array("id", "BIGINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
+	array("nick", "VARCHAR(32)", "NOT NULL"),
+	array("pwhash", "VARCHAR(255)", "NOT NULL"),
+	array("email", "VARCHAR(64)", "NOT NULL"),
+	array("lang", "VARCHAR(8)"),
+	array("css", "VARCHAR(256)", "NOT NULL"),
+	array("xslt", "VARCHAR(256)", "NOT NULL"),
+	array("umod", "BIGINT"),
+	array("banned", "BIGINT")));
+
 // Celestial bodies - positions
 
 maketable("suns", array(
