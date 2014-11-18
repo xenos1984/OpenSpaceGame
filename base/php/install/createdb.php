@@ -92,6 +92,34 @@ maketable("sdm_costs", array(
 	array("cost", "REAL"),
 	array("PRIMARY KEY", "(sdmid, res)")));
 
+// Celestial bodies - positions
+
+maketable("suns", array(
+	array("galaxy", "SMALLINT", "NOT NULL"),
+	array("sun", "SMALLINT", "NOT NULL"),
+	array("posX", "REAL"),
+	array("posY", "REAL"),
+	array("posZ", "REAL"),
+	array("PRIMARY KEY", "(galaxy, sun)")));
+
+maketable("orbits", array(
+	array("galaxy", "SMALLINT", "NOT NULL"),
+	array("sun", "SMALLINT", "NOT NULL"),
+	array("orbit", "SMALLINT", "NOT NULL"),
+	array("radius", "REAL"),
+	array("phase", "REAL"),
+	array("PRIMARY KEY", "(galaxy, sun, orbit)")));
+
+maketable("celbs", array(
+	array("galaxy", "SMALLINT", "NOT NULL"),
+	array("sun", "SMALLINT", "NOT NULL"),
+	array("orbit", "SMALLINT", "NOT NULL"),
+	array("celb", "SMALLINT", "NOT NULL"),
+	array("type", "VARCHAR(16)", "NOT NULL"),
+	array("owner", "BIGINT"),
+	array("name", "VARCHAR(32)"),
+	array("PRIMARY KEY", "(galaxy, sun, orbit, celb)")));
+
 echo "</ul>\n";
 
 ?>

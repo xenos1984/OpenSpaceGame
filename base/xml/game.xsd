@@ -89,7 +89,7 @@
 		<xs:attribute name="factor" type="xs:float" default="1"/>
 	</xs:complexType>
 
-	<!-- Single resource cost for a defense or missile -->
+	<!-- Single resource cost for a ship, defense or missile -->
 
 	<xs:complexType name="sdmcost">
 		<xs:attribute name="id" type="xs:string" use="required"/>
