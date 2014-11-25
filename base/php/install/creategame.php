@@ -16,7 +16,8 @@ $xpath = new DOMXPath($xml);
 
 echo "<ul>\n";
 
-echo "<li>Create translations... ";
+echo "<li>Create translations...<ul>";
+$allok = true;
 $languages = $xpath->query("/game/translations");
 foreach($languages as $language)
 {
@@ -28,16 +29,23 @@ foreach($languages as $language)
 		$name = $translation->getAttribute("name");
 		$descr = $xpath->evaluate("text()", $translation)->item(0)->wholeText;
 
-		db::insert('translation', array(
+		$ok = db::insert('translation', array(
 			'lang' => $lang,
 			'id' => $id,
 			'name' => $name,
 			'descr' => $descr));
+		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id:$lang &rarr; $name</li>\n";
+		$allok &= $ok;
 	}
 }
-echo '<span style="color:lime">Success.</span></li>' . "\n";
+echo '</ul>... ';
+if($allok)
+	echo '<span style="color:green">Success.</span></li>' . "\n";
+else
+	echo '<span style="color:red">Errors.</span></li>' . "\n";
 
-echo "<li>Create resources... ";
+echo "<li>Create resources...<ul>";
+$allok = true;
 $ress = $xpath->query("/game/resource");
 foreach($ress as $res)
 {
@@ -46,15 +54,22 @@ foreach($ress as $res)
 	$product = $res->getAttribute("product") / 3600.0;
 	$storage = $res->getAttribute("storage");
 
-	db::insert('resources', array(
+	$ok = db::insert('resources', array(
 		'id' => $id,
 		'value' => $value,
 		'product' => $product,
 		'storage' => $storage));
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($value, $product, $storage)</li>\n";
+	$allok &= $ok;
 }
-echo '<span style="color:lime">Success.</span></li>' . "\n";
+echo '</ul>... ';
+if($allok)
+	echo '<span style="color:green">Success.</span></li>' . "\n";
+else
+	echo '<span style="color:red">Errors.</span></li>' . "\n";
 
-echo "<li>Create buildings... ";
+echo "<li>Create buildings...<ul>";
+$allok = true;
 $buildings = $xpath->query("/game/building");
 foreach($buildings as $building)
 {
@@ -62,19 +77,23 @@ foreach($buildings as $building)
 	$time = $building->getAttribute("time");
 	$factor = $building->getAttribute("factor");
 
-	db::insert('buildings', array(
+	$ok = db::insert('buildings', array(
 		'id' => $id,
 		'time' => $time,
 		'factor' => $factor));
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($time, $factor)<ul>";
+	$allok &= $ok;
 
 	$buildons = $xpath->query("buildon", $building);
 	foreach($buildons as $buildon)
 	{
 		$celb = $buildon->getAttribute("id");
 
-		db::insert('buildon', array(
+		$ok = db::insert('buildon', array(
 			'building' => $id,
 			'celb' => $celb));
+		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&rarr; $celb</li>\n";
+		$allok &= $ok;
 	}
 
 	$costs = $xpath->query("cost", $building);
@@ -84,11 +103,13 @@ foreach($buildings as $building)
 		$value = $cost->getAttribute("value");
 		$factor = $cost->getAttribute("factor");
 
-		db::insert('br_costs', array(
+		$ok = db::insert('br_costs', array(
 			'brid' => $id,
 			'res' => $res,
 			'value' => $value,
 			'factor' => $factor));
+		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&larr; $res($value, $factor)</li>\n";
+		$allok &= $ok;
 	}
 
 	$products = $xpath->query("product", $building);
@@ -98,11 +119,13 @@ foreach($buildings as $building)
 		$value = $product->getAttribute("value") / 3600.0;
 		$power = $product->getAttribute("power");
 
-		db::insert('products', array(
+		$ok = db::insert('products', array(
 			'building' => $id,
 			'res' => $res,
 			'value' => $value,
 			'power' => $power));
+		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&uarr; $res($value, $power)</li>\n";
+		$allok &= $ok;
 	}
 
 	$storages = $xpath->query("storage", $building);
@@ -112,14 +135,21 @@ foreach($buildings as $building)
 		$value = $storage->getAttribute("value");
 		$power = $storage->getAttribute("power");
 
-		db::insert('storages', array(
+		$ok = db::insert('storages', array(
 			'building' => $id,
 			'res' => $res,
 			'value' => $value,
 			'power' => $power));
+		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&darr; $res($value, $power)</li>\n";
+		$allok &= $ok;
 	}
+	echo "</ul></li>\n";
 }
-echo '<span style="color:lime">Success.</span></li>' . "\n";
+echo '</ul>... ';
+if($allok)
+	echo '<span style="color:green">Success.</span></li>' . "\n";
+else
+	echo '<span style="color:red">Errors.</span></li>' . "\n";
 
 echo "</ul>\n";
 ?>

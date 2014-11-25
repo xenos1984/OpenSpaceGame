@@ -14,7 +14,7 @@ function maketable($tabname, $content)
 	if($res[0] != "00000")
 		echo '<span style="color:red">Error ' . $res[0] . '</span>: ' . $res[1] . ': ' . $res[2] . "</li>\n";
 	else
-		echo '<span style="color:lime">Success.</span></li>' . "\n";
+		echo '<span style="color:green">Success.</span></li>' . "\n";
 }
 
 echo "<h3>Create tables</h3>\n";
