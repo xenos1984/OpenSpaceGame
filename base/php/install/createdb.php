@@ -96,7 +96,7 @@ maketable("sdm_costs", array(
 
 maketable("players", array(
 	array("id", "BIGINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
-	array("nick", "VARCHAR(32)", "NOT NULL"),
+	array("nick", "VARCHAR(32)", "NOT NULL", "UNIQUE"),
 	array("pwhash", "VARCHAR(255)", "NOT NULL"),
 	array("email", "VARCHAR(64)", "NOT NULL"),
 	array("lang", "VARCHAR(8)"),

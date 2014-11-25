@@ -39,13 +39,13 @@
 			return(self::exec("CREATE TABLE {$database['prefix']}$name (" .  implode(", ", $cols) . ")"));
 		}
 
-		public static function create_object($table, $entries)
+		public static function insert($table, $entries)
 		{
 			global $database;
 
 			$keys = array_keys($entries);
 			$params = array_map( function($s) { return ':' . $s; }, $keys);
-			$stmt = self::$pdo->prepare("INSERT INTO $table (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $params) . ")");
+			$stmt = self::$pdo->prepare("INSERT INTO {$database['prefix']}$table (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $params) . ")");
 
 			foreach($entries as $key => $value)
 				$stmt->bindValue(':' . $key, $value);
