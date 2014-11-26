@@ -109,11 +109,10 @@ maketable("players", array(
 
 maketable("sessions", array(
 	array("id", "VARCHAR(32)", "NOT NULL", "PRIMARY KEY"),
-	array("user", "BIGINT", "NOT NULL"),
+	array("user", "BIGINT", "NOT NULL", "UNIQUE"),
 	array("login", "BIGINT", "NOT NULL"),
 	array("last", "BIGINT", "NOT NULL"),
-	array("curIP", "VARCHAR(16)"),
-	array("lastIP", "VARCHAR(16)")));
+	array("ipaddr", "VARCHAR(16)")));
 
 // Celestial bodies - positions
 
