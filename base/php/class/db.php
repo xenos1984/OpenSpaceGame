@@ -52,6 +52,38 @@
 
 			return $stmt->execute();
 		}
+
+		public static function select_one($table, $columns, $conditions)
+		{
+			global $database;
+
+			$where = array_map( function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
+			$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
+
+			foreach($conditions as $key => $value)
+				$stmt->bindValue(':' . $key, $value);
+
+			if(!($stmt->execute()))
+				return false;
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+
+		public static function select_all($table, $columns, $conditions)
+		{
+			global $database;
+
+			$where = array_map( function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
+			$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
+
+			foreach($conditions as $key => $value)
+				$stmt->bindValue(':' . $key, $value);
+
+			if(!($stmt->execute()))
+				return false;
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
 	}
 
 	db::init();
