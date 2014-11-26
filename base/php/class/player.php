@@ -22,5 +22,13 @@
 				return false;
 			return $data['id'];
 		}
+
+		public static function find($nick)
+		{
+			$data = db::select_one('players', array('id'), array('nick' => $nick));
+			if(!$data)
+				return false;
+			return $data['id'];
+		}
 	}
 ?>
