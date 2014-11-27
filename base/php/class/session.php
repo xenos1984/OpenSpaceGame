@@ -50,5 +50,13 @@
 			else
 				return new session($sid, $uid, $now, $now, $_SERVER['REMOTE_ADDR']);
 		}
+
+		public static function find($sid)
+		{
+			$data = db::select_one('sessions', array('*'), array('id' => $sid));
+			if(!$data)
+				return false;
+			return new session($data['id'], $data['user'], $data['login'], $data['last'], $data['ipaddr']);
+		}
 	}
 ?>
