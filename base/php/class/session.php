@@ -8,6 +8,8 @@
 			$sid = str_replace(array('+', '/'), array('-', '_'), base64_encode(openssl_random_pseudo_bytes(24)));
 			$now = time();
 
+			db::delete('sessions', array('user' => $uid));
+
 			if(!db::insert('sessions', array(
 				'id' => $sid,
 				'user' => $uid,
