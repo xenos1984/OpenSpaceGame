@@ -12,5 +12,5 @@
 	if(!$sid)
 		die("Failed to create session ID.");
 
-	die("Test: Session $sid created for user $uid.");
+	die("Test: Session {$sid->id} created for user $uid.");
 ?>
