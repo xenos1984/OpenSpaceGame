@@ -44,10 +44,23 @@
 			global $database;
 
 			$keys = array_keys($entries);
-			$params = array_map( function($s) { return ':' . $s; }, $keys);
+			$params = array_map(function($s) { return ':' . $s; }, $keys);
 			$stmt = self::$pdo->prepare("INSERT INTO {$database['prefix']}$table (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $params) . ")");
 
 			foreach($entries as $key => $value)
+				$stmt->bindValue(':' . $key, $value);
+
+			return $stmt->execute();
+		}
+
+		public static function delete($table, $conditions)
+		{
+			global $database;
+
+			$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
+			$stmt = self::$pdo->prepare("DELETE FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
+
+			foreach($conditions as $key => $value)
 				$stmt->bindValue(':' . $key, $value);
 
 			return $stmt->execute();
@@ -57,7 +70,7 @@
 		{
 			global $database;
 
-			$where = array_map( function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
+			$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
 			$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
 
 			foreach($conditions as $key => $value)
@@ -73,7 +86,7 @@
 		{
 			global $database;
 
-			$where = array_map( function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
+			$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
 			$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
 
 			foreach($conditions as $key => $value)
