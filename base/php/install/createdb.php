@@ -17,7 +17,7 @@ function maketable($tabname, $content)
 		echo '<span style="color:green">Success.</span></li>' . "\n";
 }
 
-echo "<h3>Create tables</h3>\n";
+echo "<h2>Create tables</h2>\n";
 echo "<ul>\n";
 
 // Universe information - translations

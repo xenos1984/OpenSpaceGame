@@ -2,7 +2,7 @@
 include_once("config.php");
 include_once("class/db.php");
 
-echo "<h3>Create universe configuration</h3>\n";
+echo "<h2>Create universe configuration</h2>\n";
 
 $xml = new DOMDocument;
 $xml->resolveExternals = true;

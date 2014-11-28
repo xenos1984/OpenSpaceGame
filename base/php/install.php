@@ -9,6 +9,7 @@
 <?php
 	include_once("install/createdb.php");
 	include_once("install/creategame.php");
+	include_once("install/createcelbs.php");
 ?>
 </body>
 </html>
