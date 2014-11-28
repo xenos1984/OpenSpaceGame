@@ -7,10 +7,10 @@
 	if(!$uid)
 		die("Invalid password or username!");
 
-	$sid = session::create($uid);
+	$sid = session::create($uid->id);
 
 	if(!$sid)
 		die("Failed to create session ID.");
 
-	die("Test: Session {$sid->id} created for user $uid.");
+	die("Test: Session {$sid->id} created for user {$uid->id}.");
 ?>

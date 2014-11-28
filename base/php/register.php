@@ -16,8 +16,8 @@
 	if($_REQUEST["pass1"] != $_REQUEST["pass2"])
 		die("Passwords don't match.");
 
-	if(!($id = player::create($_REQUEST["nick"], $_REQUEST["pass1"], $_REQUEST["email"])))
+	if(!($uid = player::create($_REQUEST["nick"], $_REQUEST["pass1"], $_REQUEST["email"])))
 		die("Create user failed.");
 
-	die("Test: new ID = $id.");
+	die("Test: new ID = {$uid->id}.");
 ?>

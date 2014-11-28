@@ -5,13 +5,13 @@
 	{
 		private $id, $user, $login, $last, $ipaddr;
 
-		private function __construct($id, $user, $login, $last, $ipaddr)
+		private function __construct(&$data)
 		{
-			$this->id = $id;
-			$this->user = $user;
-			$this->login = $login;
-			$this->last = $last;
-			$this->ipaddr = $ipaddr;
+			$this->id = $data['id'];
+			$this->user = $data['user'];
+			$this->login = $data['login'];
+			$this->last = $data['last'];
+			$this->ipaddr = $data['ipaddr'];
 		}
 
 		public function __get($var)
@@ -37,26 +37,21 @@
 		{
 			$sid = str_replace(array('+', '/'), array('-', '_'), base64_encode(openssl_random_pseudo_bytes(24)));
 			$now = time();
+			$data = array('id' => $sid, 'user' => $uid, 'login' => $now, 'last' => $now, 'ipaddr' => $_SERVER['REMOTE_ADDR']);
 
 			db::delete('sessions', array('user' => $uid));
-
-			if(!db::insert('sessions', array(
-				'id' => $sid,
-				'user' => $uid,
-				'login' => $now,
-				'last' => $now,
-				'ipaddr' => $_SERVER['REMOTE_ADDR'])))
+			if(!db::insert('sessions', $data))
 				return false;
 			else
-				return new session($sid, $uid, $now, $now, $_SERVER['REMOTE_ADDR']);
+				return new session($data);
 		}
 
-		public static function find($sid)
+		public static function byid($sid)
 		{
 			$data = db::select_one('sessions', array('*'), array('id' => $sid));
 			if(!$data)
 				return false;
-			return new session($data['id'], $data['user'], $data['login'], $data['last'], $data['ipaddr']);
+			return new session($data);
 		}
 	}
 ?>

@@ -5,7 +5,7 @@ include_once('class/session.php');
 if(!array_key_exists('session', $_REQUEST))
 	die("Session ID missing.");
 
-$sid = session::find($_REQUEST['session']);
+$sid = session::byid($_REQUEST['session']);
 if(!$sid)
 	die("Invalid session ID.");
 
