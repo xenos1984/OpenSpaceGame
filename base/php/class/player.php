@@ -59,7 +59,7 @@
 
 		public static function checkpass($nick, $password)
 		{
-			$data = db::select_one('players', array('*'), array('nick' => $nick));
+			$data = db::select_one('players', array('nick' => $nick));
 			if(!$data)
 				return false;
 			if(!password_verify($password, $data['pwhash']))
@@ -69,7 +69,7 @@
 
 		public static function find($nick)
 		{
-			$data = db::select_one('players', array('*'), array('nick' => $nick));
+			$data = db::select_one('players', array('nick' => $nick));
 			if(!$data)
 				return false;
 			return new player($data);

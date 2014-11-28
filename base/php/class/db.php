@@ -66,7 +66,7 @@
 			return $stmt->execute();
 		}
 
-		public static function select_one($table, $columns, $conditions)
+		public static function select_one($table, $conditions, $columns = array('*'))
 		{
 			global $database;
 
@@ -82,7 +82,7 @@
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 		}
 
-		public static function select_all($table, $columns, $conditions)
+		public static function select_all($table, $conditions, $columns = array('*'))
 		{
 			global $database;
 

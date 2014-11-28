@@ -48,7 +48,7 @@
 
 		public static function byid($sid)
 		{
-			$data = db::select_one('sessions', array('*'), array('id' => $sid));
+			$data = db::select_one('sessions', array('id' => $sid));
 			if(!$data)
 				return false;
 			return new session($data);
