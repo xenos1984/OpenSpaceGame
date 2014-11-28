@@ -1,5 +1,4 @@
 <?php
-
 include_once('class/session.php');
 
 if(!array_key_exists('session', $_REQUEST))
@@ -36,5 +35,4 @@ $output = $proc->transformToXML($xml);
 // Output data.
 header("Content-Type: text/html; charset=UTF-8");
 echo $output;
-
 ?>
