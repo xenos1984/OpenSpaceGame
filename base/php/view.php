@@ -1,5 +1,6 @@
 <?php
 include_once('class/session.php');
+include_once('class/celb.php');
 
 if(!array_key_exists('session', $_REQUEST))
 	die("Session ID missing.");
@@ -8,6 +9,17 @@ $sid = session::byid($_REQUEST['session']);
 if(!$sid)
 	die("Invalid session ID.");
 
+if(!array_key_exists('celb', $_REQUEST))
+	die("Celestial body missing.");
+
+$celb = celb::bycoord($_REQUEST['celb']);
+if(!$celb)
+	die("Invalid celestial body.");
+
+if($celb->owner != $sid->user)
+	die("Celestial body does not belong to player.");
+
+header("Content-type: text/plain");
 print_r($sid);
 die();
 

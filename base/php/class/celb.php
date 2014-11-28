@@ -51,7 +51,7 @@ class celb
 	{
 		if(!preg_match('/(\d+):(\d+):(\d+):(\d+)/i', $coord, $result))
 			return false;
-		return bypos($result[1], $result[2], $result[3], $result[4]);
+		return self::bypos($result[1], $result[2], $result[3], $result[4]);
 	}
 }
 ?>
