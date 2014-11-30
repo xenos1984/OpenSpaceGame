@@ -34,6 +34,8 @@ class celb
 			return $this->owner;
 		case 'name':
 			return $this->name;
+		case 'coords':
+			return "{$this->galaxy}:{$this->sun}:{$this->orbit}:{$this->celb}";
 		default:
 			return null;
 		}
