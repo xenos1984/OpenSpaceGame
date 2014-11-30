@@ -66,6 +66,22 @@ class db
 		return $stmt->execute();
 	}
 
+	public static function update($table, $conditions, $entries)
+	{
+		global $database;
+
+		$set = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($entries));
+		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
+		$stmt = self::$pdo->prepare("UPDATE {$database['prefix']}$table SET " . implode(", ", $set) . " WHERE " . implode(" AND ", $where));
+
+		foreach($entries as $key => $value)
+			$stmt->bindValue(':' . $key, $value);
+		foreach($conditions as $key => $value)
+			$stmt->bindValue(':' . $key, $value);
+
+		return $stmt->execute();
+	}
+
 	public static function select_one($table, $conditions, $columns = array('*'), $order = null, $offset = null)
 	{
 		global $database;
