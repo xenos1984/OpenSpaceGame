@@ -66,15 +66,23 @@ class db
 		return $stmt->execute();
 	}
 
-	public static function select_one($table, $conditions, $columns = array('*'))
+	public static function select_one($table, $conditions, $columns = array('*'), $order = null, $offset = null)
 	{
 		global $database;
 
 		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where) . " LIMIT 1");
+		$cmd = "SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where);
+		if(isset($order))
+			$cmd .= " ORDER BY $order";
+		$cmd .= " LIMIT 1";
+		if(isset($offset))
+			$cmd .= " OFFSET :offset";
+		$stmt = self::$pdo->prepare($cmd);
 
 		foreach($conditions as $key => $value)
 			$stmt->bindValue(':' . $key, $value);
+		if(isset($offset))
+			$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 
 		if(!($stmt->execute()))
 			return false;
@@ -99,9 +107,9 @@ class db
 		foreach($conditions as $key => $value)
 			$stmt->bindValue(':' . $key, $value);
 		if(isset($limit))
-			$stmt->bindValue(':limit' . $limit);
+			$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
 		if(isset($offset))
-			$stmt->bindValue(':offset' . $offset);
+			$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 
 		if(!($stmt->execute()))
 			return false;

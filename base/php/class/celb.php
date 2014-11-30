@@ -53,5 +53,17 @@ class celb
 			return false;
 		return self::bypos($result[1], $result[2], $result[3], $result[4]);
 	}
+
+	public static function randfree($type)
+	{
+		$cnt = db::select_one('celbs', array('type' => $type, 'owner' => 0), array('COUNT(*)'));
+		if(!$cnt)
+			return false;
+		$index = mt_rand(0, $cnt['COUNT(*)'] - 1);
+		$data = db::select_one('celbs', array('type' => $type, 'owner' => 0), array('*'), null, $index);
+		if(!$data)
+			return false;
+		return new celb($data);
+	}
 }
 ?>
