@@ -71,7 +71,7 @@ class db
 		global $database;
 
 		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
+		$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where) . " LIMIT 1");
 
 		foreach($conditions as $key => $value)
 			$stmt->bindValue(':' . $key, $value);
@@ -82,15 +82,26 @@ class db
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
-	public static function select_all($table, $conditions, $columns = array('*'))
+	public static function select_all($table, $conditions, $columns = array('*'), $order = null, $limit = null, $offset = null)
 	{
 		global $database;
 
 		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$stmt = self::$pdo->prepare("SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
+		$cmd = "SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where);
+		if(isset($order))
+			$cmd .= " ORDER BY $order";
+		if(isset($limit))
+			$cmd .= " LIMIT :limit";
+		if(isset($offset))
+			$cmd .= " OFFSET :offset";
+		$stmt = self::$pdo->prepare($cmd);
 
 		foreach($conditions as $key => $value)
 			$stmt->bindValue(':' . $key, $value);
+		if(isset($limit))
+			$stmt->bindValue(':limit' . $limit);
+		if(isset($offset))
+			$stmt->bindValue(':offset' . $offset);
 
 		if(!($stmt->execute()))
 			return false;
