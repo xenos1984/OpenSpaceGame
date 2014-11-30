@@ -12,5 +12,8 @@ $sid = session::create($uid->id);
 if(!$sid)
 	die("Failed to create session ID.");
 
-die("Test: Session {$sid->id} created for user {$uid->id}.");
+setcookie('session', $sid->id);
+setcookie('user', $uid->nick);
+
+header("Location: view.php?view=overview");
 ?>
