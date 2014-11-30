@@ -53,5 +53,10 @@ class session
 			return false;
 		return new session($data);
 	}
+
+	public function delete()
+	{
+		return db::delete('sessions', array('id' => $sid));
+	}
 }
 ?>
