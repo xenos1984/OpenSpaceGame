@@ -39,6 +39,21 @@ class celb
 		}
 	}
 
+	public function __set($var, $value)
+	{
+		switch($var)
+		{
+		case 'owner':
+			db::update('celbs', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb), array('owner' => $value));
+			$this->owner = $value;
+			break;
+		case 'name':
+			db::update('celbs', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb), array('name' => $value));
+			$this->name = $value;
+			break;
+		}
+	}
+
 	public static function bypos($galaxy, $sun, $orbit, $celb)
 	{
 		$data = db::select_one('celbs', array('galaxy' => $galaxy, 'sun' => $sun, 'orbit' => $orbit, 'celb' => $celb));

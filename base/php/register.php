@@ -1,7 +1,6 @@
 <?php
 include_once("class/player.php");
 include_once("class/celb.php");
-header("Content-type: text/plain");
 
 if($_REQUEST["nick"] == "")
 	die("Empty user name.");
@@ -22,6 +21,7 @@ if(!($uid = player::create($_REQUEST["nick"], $_REQUEST["pass1"], $_REQUEST["ema
 	die("Create user failed.");
 
 $home = celb::randfree('...');
+$home->owner = $uid->id;
 
 die("Test: new ID = {$uid->id}.");
 ?>
