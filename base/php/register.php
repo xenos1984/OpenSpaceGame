@@ -1,5 +1,6 @@
 <?php
 include_once("class/player.php");
+include_once("class/session.php");
 include_once("class/celb.php");
 
 if($_REQUEST["nick"] == "")
@@ -23,5 +24,13 @@ if(!($uid = player::create($_REQUEST["nick"], $_REQUEST["pass1"], $_REQUEST["ema
 $home = celb::randfree('...');
 $home->owner = $uid->id;
 
-die("Test: new ID = {$uid->id}.");
+$sid = session::create($uid->id);
+
+if(!$sid)
+	die("Failed to create session ID.");
+
+setcookie('session', $sid->id);
+setcookie('user', $uid->nick);
+
+header("Location: view.php?view=overview&celb={$home->coords}");
 ?>
