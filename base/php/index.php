@@ -10,7 +10,7 @@
 			<fieldset>
 				<legend>Login</legend>
 				<table>
-					<tr><th>Username:</th><td><input type="text" name="nick" maxlength="32"></td></tr>
+					<tr><th>Username:</th><td><input type="text" name="nick" maxlength="32"<?php if(array_key_exists('user', $_COOKIE)) echo ' value="' . $_COOKIE['user'] . '"'; ?>></td></tr>
 					<tr><th>Passwort:</th><td><input type="password" name="pass" maxlength="32"></td></tr>
 					<tr><td colspan="2"><input type="reset" value="Clear"><input type="submit" value="Login"></td></tr>
 				</table>
