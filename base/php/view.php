@@ -24,10 +24,6 @@ if(!$celb)
 if($celb->owner != $sid->user)
 	die("Celestial body does not belong to player.");
 
-header("Content-type: text/plain");
-print_r($sid);
-die();
-
 // Check whether we have a view type given.
 if(!array_key_exists('view', $_REQUEST))
 	die("View type missing.");

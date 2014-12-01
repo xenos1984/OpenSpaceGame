@@ -32,5 +32,5 @@ if(!$sid)
 setcookie('session', $sid->id);
 setcookie('user', $uid->nick);
 
-header("Location: view.php?view=overview&celb={$home->coords}");
+header("Location: view.php?view=buildings&celb={$home->coords}");
 ?>

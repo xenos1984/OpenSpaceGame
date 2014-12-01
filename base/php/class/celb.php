@@ -71,6 +71,14 @@ class celb
 		return self::bypos($result[1], $result[2], $result[3], $result[4]);
 	}
 
+	public static function byowner($uid)
+	{
+		$data = db::select_all('celbs', array('owner' => $uid));
+		if(!$data)
+			return false;
+		return array_map(function($x) { return new celb($x); }, $data);
+	}
+
 	public static function randfree($type)
 	{
 		$cnt = db::select_one('celbs', array('type' => $type, 'owner' => 0), array('COUNT(*)'));
