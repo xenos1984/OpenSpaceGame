@@ -12,7 +12,6 @@
 			</xs:sequence>
 			<xs:attribute name="lang" type="xs:language" use="required"/>
 			<xs:attribute name="servertime" type="xs:positiveInteger" use="required"/>
-			<xs:attribute name="session" type="xs:hexBinary" use="required"/>
 			<xs:attribute name="xslt" type="xs:anyURI" default=""/>
 			<xs:attribute name="css" type="xs:anyURI" default=""/>
 		</xs:complexType>

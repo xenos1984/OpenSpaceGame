@@ -2,13 +2,12 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" omit-xml-declaration="yes" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
 
-	<xsl:variable name="session" select="/view/@session"/>
 	<xsl:variable name="lang" select="/view/@lang"/>
 	<xsl:variable name="i18n" select="document('i18n.xml')/i18n"/>
 	<xsl:variable name="trans" select="$i18n/trans[position() = 1 or @lang = $lang][last()]/phrase"/>
+	<xsl:variable name="curpos" select="/view/positions/position[@galaxy = /view/positions/@curg and @solsys = /view/positions/@curs and @orbit = /view/positions/@curo and @celb = /view/positions/@curc]"/>
 
 	<xsl:template match="view">
-		<xsl:variable name="curpos" select="positions/position[@galaxy = /view/positions/@curg and @solsys = /view/positions/@curs and @orbit = /view/positions/@curo and @celb = /view/positions/@curc]"/>
 		<html>
 			<head>
 				<title>OpenSpaceGame</title>
@@ -126,7 +125,7 @@
 						</tr>
 						<tr>
 							<td class="poslist">
-								<select size="1" class="poslist" onchange="location.href = location.href + '&amp;pos=' + this.options[this.selectedIndex].value">
+								<select size="1" class="poslist" onchange="location.href = location.href.replace(/celb=[0-9]+:[0-9]+:[0-9]+:[0-9]+/g, 'celb=' + this.options[this.selectedIndex].value)">
 									<xsl:for-each select="positions/position">
 										<option class="posopt" value="{@galaxy}:{@solsys}:{@orbit}:{@celb}">
 											<xsl:if test="generate-id(.) = generate-id($curpos)">
@@ -240,7 +239,7 @@
 
 	<xsl:template name="jumplink">
 		<xsl:param name="pos"/>
-		<xsl:text>location.href = location.href + '&amp;pos=</xsl:text>
+		<xsl:text>location.href = location.href.replace(/celb=[0-9]+:[0-9]+:[0-9]+:[0-9]+/g, 'celb=</xsl:text>
 		<xsl:value-of select="$pos/@galaxy"/>
 		<xsl:text>:</xsl:text>
 		<xsl:value-of select="$pos/@solsys"/>
@@ -248,7 +247,7 @@
 		<xsl:value-of select="$pos/@orbit"/>
 		<xsl:text>:</xsl:text>
 		<xsl:value-of select="$pos/@celb"/>
-		<xsl:text>'</xsl:text>
+		<xsl:text>')</xsl:text>
 	</xsl:template>
 
 	<xsl:template name="menuitem">
@@ -257,7 +256,7 @@
 		<xsl:param name="lkey"/>
 		<tr>
 			<td class="menu">
-				<a class="menulink" accesskey="{$akey}" href="view.php?view={$vname}&amp;session={$session}">
+				<a class="menulink" accesskey="{$akey}" href="view.php?view={$vname}&amp;celb={/view/positions/@curg}:{/view/positions/@curs}:{/view/positions/@curo}:{/view/positions/@curc}">
 					<xsl:value-of select="$trans[@key = $lkey]"/>
 				</a>
 			</td>
