@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <i18n>
-	<trans lang="en">
+	<trans lang="en-US">
 		<phrase key="menu_ov">Overview</phrase>
 		<phrase key="menu_em">Empire</phrase>
 		<phrase key="menu_bld">Buildings</phrase>
@@ -28,7 +28,7 @@
 		<phrase key="notpos">Order not possible.</phrase>
 	</trans>
 
-	<trans lang="de">
+	<trans lang="de-DE">
 		<phrase key="menu_ov">Übersicht</phrase>
 		<phrase key="menu_em">Imperium</phrase>
 		<phrase key="menu_bld">Gebäude</phrase>
