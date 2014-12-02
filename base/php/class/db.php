@@ -7,9 +7,7 @@ class db
 
 	public static function init()
 	{
-		global $database;
-
-		self::$pdo = new PDO($database["database"], $database["user"], $database["password"]);
+		self::$pdo = new PDO(config::DB_DATABASE, config::DB_USER, config::DB_PASSWORD);
 	}
 
 	private static function exec($cmd)
@@ -29,23 +27,19 @@ class db
 
 	public static function create_table($name, $columns)
 	{
-		global $database;
-
 		$cols = array();
 		foreach($columns as $column)
 			$cols[] = implode(" ", $column);
 
-		self::exec("DROP TABLE {$database['prefix']}$name");
-		return(self::exec("CREATE TABLE {$database['prefix']}$name (" .  implode(", ", $cols) . ")"));
+		self::exec("DROP TABLE " . config::DB_PREFIX . $name);
+		return(self::exec("CREATE TABLE " . config::DB_PREFIX . "$name (" .  implode(", ", $cols) . ")"));
 	}
 
 	public static function insert($table, $entries)
 	{
-		global $database;
-
 		$keys = array_keys($entries);
 		$params = array_map(function($s) { return ':' . $s; }, $keys);
-		$stmt = self::$pdo->prepare("INSERT INTO {$database['prefix']}$table (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $params) . ")");
+		$stmt = self::$pdo->prepare("INSERT INTO " . config::DB_PREFIX . "$table (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $params) . ")");
 
 		foreach($entries as $key => $value)
 			$stmt->bindValue(':' . $key, $value);
@@ -55,10 +49,8 @@ class db
 
 	public static function delete($table, $conditions)
 	{
-		global $database;
-
 		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$stmt = self::$pdo->prepare("DELETE FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where));
+		$stmt = self::$pdo->prepare("DELETE FROM " . config::DB_PREFIX . "$table WHERE " . implode(" AND ", $where));
 
 		foreach($conditions as $key => $value)
 			$stmt->bindValue(':' . $key, $value);
@@ -68,11 +60,9 @@ class db
 
 	public static function update($table, $conditions, $entries)
 	{
-		global $database;
-
 		$set = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($entries));
 		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$stmt = self::$pdo->prepare("UPDATE {$database['prefix']}$table SET " . implode(", ", $set) . " WHERE " . implode(" AND ", $where));
+		$stmt = self::$pdo->prepare("UPDATE " . config::DB_PREFIX . "$table SET " . implode(", ", $set) . " WHERE " . implode(" AND ", $where));
 
 		foreach($entries as $key => $value)
 			$stmt->bindValue(':' . $key, $value);
@@ -84,10 +74,8 @@ class db
 
 	public static function select_one($table, $conditions, $columns = array('*'), $order = null, $offset = null)
 	{
-		global $database;
-
 		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$cmd = "SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where);
+		$cmd = "SELECT " . implode(", ", $columns) . " FROM " . config::DB_PREFIX . "$table WHERE " . implode(" AND ", $where);
 		if(isset($order))
 			$cmd .= " ORDER BY $order";
 		$cmd .= " LIMIT 1";
@@ -108,10 +96,8 @@ class db
 
 	public static function select_all($table, $conditions, $columns = array('*'), $order = null, $limit = null, $offset = null)
 	{
-		global $database;
-
 		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$cmd = "SELECT " . implode(", ", $columns) . " FROM {$database['prefix']}$table WHERE " . implode(" AND ", $where);
+		$cmd = "SELECT " . implode(", ", $columns) . " FROM " . config::DB_PREFIX . "$table WHERE " . implode(" AND ", $where);
 		if(isset($order))
 			$cmd .= " ORDER BY $order";
 		if(isset($limit))

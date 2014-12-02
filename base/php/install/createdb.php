@@ -4,9 +4,7 @@ include_once("class/db.php");
 
 function maketable($tabname, $content)
 {
-	global $database;
-
-	echo "<li>Create table {$database['prefix']}$tabname... ";
+	echo "<li>Create table " . config::DB_PREFIX . "$tabname... ";
 
 	db::create_table($tabname, $content);
 

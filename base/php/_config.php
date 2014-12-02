@@ -1,25 +1,28 @@
 <?php
-// Database settings
+class config
+{
+	// Database settings
 
-// Username
-$database["user"] = "";
-// Password
-$database["password"] = "";
-// PDO database string
-$database["database"] = "";
-// Table name prefix
-$database["prefix"] = "";
+	// Username
+	const DB_USER = '';
+	// Password
+	const DB_PASSWORD = '';
+	// PDO database string
+	const DB_DATABASE = '';
+	// Table name prefix
+	const DB_PREFIX = '';
 
-// Settings for celestial bodies
+	// Settings for celestial bodies
 
-// Number of galaxies
-$celbinfo['galaxies'] = 9;
-// Number of solar systems per galaxy
-$celbinfo['suns'] = 999;
-// Minimum number of orbits per solar system
-$celbinfo['minorbits'] = 8;
-// Maximum number of orbits per solar system
-$celbinfo['maxorbits'] = 12;
-// Maximum number of celestial bodies per orbit
-$celbinfo['celbs'] = 3;
+	// Number of galaxies
+	const CELB_GALAXIES = 9;
+	// Number of solar systems per galaxy
+	const CELB_SUNS = 999;
+	// Minimum number of orbits per solar system
+	const CELB_MINORBITS = 8;
+	// Maximum number of orbits per solar system
+	const CELB_MAXORBITS = 12;
+	// Maximum number of celestial bodies per orbit
+	const CELB_MAXCELBS = 3;
+}
 ?>

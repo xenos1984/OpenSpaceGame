@@ -6,9 +6,9 @@ echo "<h2>Create celestial bodies</h2>\n";
 
 $to = $tc = 0;
 
-for($g = 1; $g <= $celbinfo['galaxies']; $g++)
+for($g = 1; $g <= config::CELB_GALAXIES; $g++)
 {
-	for($s = 1; $s <= $celbinfo['suns']; $s++)
+	for($s = 1; $s <= config::CELB_SUNS; $s++)
 	{
 		db::insert('suns', array(
 			'galaxy' => $g,
@@ -17,7 +17,7 @@ for($g = 1; $g <= $celbinfo['galaxies']; $g++)
 			'posY' => mt_rand() / mt_getrandmax(),
 			'posZ' => mt_rand() / mt_getrandmax()));
 
-		$no = mt_rand($celbinfo['minorbits'], $celbinfo['maxorbits']);
+		$no = mt_rand(config::CELB_MINORBITS, config::CELB_MAXORBITS);
 		$to += $no;
 
 		for($o = 1; $o <= $no; $o++)
@@ -29,7 +29,7 @@ for($g = 1; $g <= $celbinfo['galaxies']; $g++)
 				'radius' => 0.4 + 0.3 * pow(2, $o),
 				'phase' => 2 * M_PI * mt_rand() / mt_getrandmax()));
 
-			$nc = mt_rand(1, $celbinfo['celbs']);
+			$nc = mt_rand(1, config::CELB_MAXCELBS);
 			$tc += $nc;
 
 			for($c = 1; $c <= $nc; $c++)
@@ -48,8 +48,8 @@ for($g = 1; $g <= $celbinfo['galaxies']; $g++)
 }
 
 echo "<ul>\n";
-echo "<li>Total galaxies: {$celbinfo['galaxies']}</li>\n";
-echo "<li>Total solar systems: " . ($celbinfo['galaxies'] * $celbinfo['suns']) . "</li>\n";
+echo "<li>Total galaxies: " . config::CELB_GALAXIES . "</li>\n";
+echo "<li>Total solar systems: " . (config::CELB_GALAXIES * config::CELB_SUNS) . "</li>\n";
 echo "<li>Total orbits: $to</li>\n";
 echo "<li>Total celestial bodies: $tc</li>\n";
 echo "</ul>\n";
