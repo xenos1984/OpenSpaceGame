@@ -29,11 +29,11 @@ if(!array_key_exists('view', $_REQUEST))
 	die("View type missing.");
 
 // Check whether the requested XML data generator exists.
-if(!file_exists("views/" . $_REQUEST['view'] . ".php"))
-	die("View file " . $_REQUEST['view'] . ".php not found.");
+if(!file_exists("views/{$_REQUEST['view']}.php"))
+	die("View file {$_REQUEST['view']}.php not found.");
 
 // Include it and generate XML data.
-include("views/" . $_REQUEST['view'] . ".php");
+include("views/{$_REQUEST['view']}.php");
 $xml = $xmlgen->generateXML();
 if(!$xml->schemaValidate("../xml/view.xsd", LIBXML_SCHEMA_CREATE))
 	die("ERROR: Invalid XML generated!");
@@ -42,7 +42,7 @@ if(!$xml->schemaValidate("../xml/view.xsd", LIBXML_SCHEMA_CREATE))
 $xsl = new DOMDocument;
 $xsl->resolveExternals = true;
 $xsl->substituteEntities = true;
-$xsl->load("../../styles/xslt/default/" . $_REQUEST['view'] . ".xsl");
+$xsl->load("../../styles/xslt/default/{$_REQUEST['view']}.xsl");
 
 // Transform data to HTML.
 $proc = new XSLTProcessor;
