@@ -16,6 +16,7 @@
 		<phrase key="menu_al">Alliance</phrase>
 		<phrase key="menu_di">Diplomacy</phrase>
 		<phrase key="menu_ma">Market</phrase>
+		<phrase key="menu_lo">Logout</phrase>
 
 		<phrase key="name">Name</phrase>
 		<phrase key="level">Level</phrase>
@@ -44,6 +45,7 @@
 		<phrase key="menu_al">Allianz</phrase>
 		<phrase key="menu_di">Diplomatie</phrase>
 		<phrase key="menu_ma">Markt</phrase>
+		<phrase key="menu_lo">Abmelden</phrase>
 
 		<phrase key="name">Name</phrase>
 		<phrase key="level">Stufe</phrase>

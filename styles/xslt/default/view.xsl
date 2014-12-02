@@ -98,6 +98,14 @@
 							<xsl:with-param name="vname">market</xsl:with-param>
 							<xsl:with-param name="lkey">menu_ma</xsl:with-param>
 						</xsl:call-template>
+						<tr><td class="menuspace"></td></tr>
+						<tr>
+							<td class="menu">
+								<a class="menulink logout" accesskey="q" href="logout.php">
+									<xsl:value-of select="$trans[@key = 'menu_lo']"/>
+								</a>
+							</td>
+						</tr>
 					</table>
 				</div>
 				<div id="poslist">
@@ -256,7 +264,7 @@
 		<xsl:param name="lkey"/>
 		<tr>
 			<td class="menu">
-				<a class="menulink" accesskey="{$akey}" href="view.php?view={$vname}&amp;celb={/view/positions/@curg}:{/view/positions/@curs}:{/view/positions/@curo}:{/view/positions/@curc}">
+				<a class="menulink {$vname}" accesskey="{$akey}" href="view.php?view={$vname}&amp;celb={/view/positions/@curg}:{/view/positions/@curs}:{/view/positions/@curo}:{/view/positions/@curc}">
 					<xsl:value-of select="$trans[@key = $lkey]"/>
 				</a>
 			</td>

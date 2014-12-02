@@ -108,6 +108,11 @@ a.menulink
 	text-decoration: none;
 }
 
+a.menulink.logout
+{
+	color: red;
+}
+
 /* Celestial bodys */
 
 *.possmall, *.sunsmall
