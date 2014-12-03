@@ -11,6 +11,7 @@
 				<xs:element ref="building" maxOccurs="unbounded"/>
 				<!-- <xs:element ref="research" maxOccurs="unbounded"/> -->
 				<xs:element ref="production" maxOccurs="unbounded"/>
+				<xs:element ref="storage" maxOccurs="unbounded"/>
 				<xs:element ref="translations" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -22,7 +23,6 @@
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="value" type="xs:float" default="0"/>
-			<xs:attribute name="storage" type="xs:float" default="0"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -46,13 +46,6 @@
 				</xs:element>
 				<xs:element name="cost" type="brcost" maxOccurs="unbounded"/>
 				<xs:element ref="pretech" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="storage" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:attribute name="id" type="xs:string" use="required"/>
-						<xs:attribute name="value" type="xs:float" default="0"/>
-						<xs:attribute name="power" type="xs:float" default="1"/>
-					</xs:complexType>
-				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="time" type="xs:float" use="required"/>
@@ -101,6 +94,18 @@
 	<!-- Formula for resource production. -->
 
 	<xs:element name="production">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="formula"/>
+			</xs:sequence>
+			<xs:attribute name="resource" type="xs:string" use="required"/>
+			<xs:attribute name="celbtype" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Formula for resource storage. -->
+
+	<xs:element name="storage">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="formula"/>

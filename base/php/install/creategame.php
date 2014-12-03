@@ -56,10 +56,10 @@ foreach($ress as $res)
 
 	$ok = db::insert('resources', array(
 		'id' => $id,
-		'value' => $value,
-//		'product' => $product,
-		'storage' => $storage));
-	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($value, $storage)</li>\n";
+		'value' => $value/*,
+		'product' => $product,
+		'storage' => $storage*/));
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($value)</li>\n";
 	$allok &= $ok;
 }
 echo '</ul>... ';
@@ -127,7 +127,7 @@ foreach($buildings as $building)
 		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&uarr; $res($value, $power)</li>\n";
 		$allok &= $ok;
 	}
-*/
+
 	$storages = $xpath->query("storage", $building);
 	foreach($storages as $storage)
 	{
@@ -142,7 +142,7 @@ foreach($buildings as $building)
 			'power' => $power));
 		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&darr; $res($value, $power)</li>\n";
 		$allok &= $ok;
-	}
+	}*/
 	echo "</ul></li>\n";
 }
 echo '</ul>... ';

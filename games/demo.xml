@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <game>
-	<resource id="resTi" value="50000" storage="100000"/>
-	<resource id="resSi" value="25000" storage="100000"/>
+	<resource id="resTi" value="50000"/>
+	<resource id="resSi" value="25000"/>
 	<resource id="resDe"/>
 	<resource id="resAM"/>
 
@@ -45,6 +45,14 @@
 			</product>
 		</sum>
 	</production>
+
+	<storage resource="resTi" celbtype="ctSto">
+		<constant value="100000"/>
+	</storage>
+
+	<storage resource="resSi" celbtype="ctSto">
+		<constant value="100000"/>
+	</storage>
 
 	<translations lang="en-US">
 		<translation id="resTi" name="Titanium">Titanium is the most important resource for the construction of spaceships and buildings.</translation>
