@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <game>
-	<resource id="resTi" value="50000" product="250" storage="100000"/>
-	<resource id="resSi" value="25000" product="125" storage="100000"/>
+	<resource id="resTi" value="50000" storage="100000"/>
+	<resource id="resSi" value="25000" storage="100000"/>
 	<resource id="resDe"/>
 	<resource id="resAM"/>
 
@@ -15,7 +15,6 @@
 		<buildon id="ctDes"/>
 		<cost id="resTi" value="400" factor="1.5"/>
 		<cost id="resSi" value="200" factor="1.5"/>
-		<product id="resTi" value="1000" power="1.5"/>
 	</building>
 
 	<building id="bldMSi" time="240" factor="1.5">
@@ -23,8 +22,29 @@
 		<buildon id="ctDes"/>
 		<cost id="resTi" value="400" factor="1.5"/>
 		<cost id="resSi" value="200" factor="1.5"/>
-		<product id="resSi" value="500" power="1.5"/>
 	</building>
+
+	<production resource="resTi" celbtype="ctSto">
+		<sum>
+			<constant value="250"/>
+			<product>
+				<constant value="1000"/>
+				<level ref="bldMTi"/>
+				<level ref="bldMTi"/>
+			</product>
+		</sum>
+	</production>
+
+	<production resource="resSi" celbtype="ctSto">
+		<sum>
+			<constant value="125"/>
+			<product>
+				<constant value="500"/>
+				<level ref="bldMSi"/>
+				<level ref="bldMSi"/>
+			</product>
+		</sum>
+	</production>
 
 	<translations lang="en-US">
 		<translation id="resTi" name="Titanium">Titanium is the most important resource for the construction of spaceships and buildings.</translation>

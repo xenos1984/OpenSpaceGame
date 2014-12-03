@@ -9,7 +9,8 @@
 				<xs:element ref="resource" maxOccurs="unbounded"/>
 				<xs:element ref="celbtype" maxOccurs="unbounded"/>
 				<xs:element ref="building" maxOccurs="unbounded"/>
-				<xs:element ref="research" maxOccurs="unbounded"/>
+				<!-- <xs:element ref="research" maxOccurs="unbounded"/> -->
+				<xs:element ref="production" maxOccurs="unbounded"/>
 				<xs:element ref="translations" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -21,7 +22,6 @@
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="value" type="xs:float" default="0"/>
-			<xs:attribute name="product" type="xs:float" default="0"/>
 			<xs:attribute name="storage" type="xs:float" default="0"/>
 		</xs:complexType>
 	</xs:element>
@@ -46,13 +46,6 @@
 				</xs:element>
 				<xs:element name="cost" type="brcost" maxOccurs="unbounded"/>
 				<xs:element ref="pretech" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="product" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:attribute name="id" type="xs:string" use="required"/>
-						<xs:attribute name="value" type="xs:float" default="0"/>
-						<xs:attribute name="power" type="xs:float" default="1"/>
-					</xs:complexType>
-				</xs:element>
 				<xs:element name="storage" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:attribute name="id" type="xs:string" use="required"/>
@@ -81,7 +74,7 @@
 		</xs:complexType>
 	</xs:element>
 
-	<!-- Single resource cost for a building or research -->
+	<!-- Single resource cost for a building or research. -->
 
 	<xs:complexType name="brcost">
 		<xs:attribute name="id" type="xs:string" use="required"/>
@@ -89,19 +82,63 @@
 		<xs:attribute name="factor" type="xs:float" default="1"/>
 	</xs:complexType>
 
-	<!-- Single resource cost for a ship, defense or missile -->
+	<!-- Single resource cost for a ship, defense or missile. -->
 
 	<xs:complexType name="sdmcost">
 		<xs:attribute name="id" type="xs:string" use="required"/>
 		<xs:attribute name="value" type="xs:float" default="0"/>
 	</xs:complexType>
 
-	<!-- Required building or research -->
+	<!-- Required building or research. -->
 
 	<xs:element name="pretech">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="level" type="xs:nonNegativeInteger" default="0"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Formula for resource production. -->
+
+	<xs:element name="production">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="formula"/>
+			</xs:sequence>
+			<xs:attribute name="resource" type="xs:string" use="required"/>
+			<xs:attribute name="celbtype" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Generic formula representation -->
+
+	<xs:element name="formula" abstract="true"/>
+
+	<xs:element name="constant" substitutionGroup="formula">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:float" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="level" substitutionGroup="formula">
+		<xs:complexType>
+			<xs:attribute name="ref" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="sum" substitutionGroup="formula">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="formula" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="product" substitutionGroup="formula">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="formula" maxOccurs="unbounded"/>
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 

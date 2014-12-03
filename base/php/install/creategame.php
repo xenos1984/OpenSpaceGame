@@ -51,15 +51,15 @@ foreach($ress as $res)
 {
 	$id = $res->getAttribute("id");
 	$value = $res->getAttribute("value");
-	$product = $res->getAttribute("product") / 3600.0;
+//	$product = $res->getAttribute("product") / 3600.0;
 	$storage = $res->getAttribute("storage");
 
 	$ok = db::insert('resources', array(
 		'id' => $id,
 		'value' => $value,
-		'product' => $product,
+//		'product' => $product,
 		'storage' => $storage));
-	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($value, $product, $storage)</li>\n";
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($value, $storage)</li>\n";
 	$allok &= $ok;
 }
 echo '</ul>... ';
@@ -111,7 +111,7 @@ foreach($buildings as $building)
 		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&larr; $res($value, $factor)</li>\n";
 		$allok &= $ok;
 	}
-
+/*
 	$products = $xpath->query("product", $building);
 	foreach($products as $product)
 	{
@@ -127,7 +127,7 @@ foreach($buildings as $building)
 		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&uarr; $res($value, $power)</li>\n";
 		$allok &= $ok;
 	}
-
+*/
 	$storages = $xpath->query("storage", $building);
 	foreach($storages as $storage)
 	{
