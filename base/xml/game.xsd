@@ -20,6 +20,16 @@
 			<xs:selector xpath=".//resource | .//celbtype | .//building"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
+
+		<xs:keyref name="lvlobj" refer="object">
+			<xs:selector xpath=".//level"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
+
+		<xs:keyref name="trobj" refer="object">
+			<xs:selector xpath=".//translation"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
 	</xs:element>
 
 	<!-- Resource type. -->
@@ -132,7 +142,7 @@
 
 	<xs:element name="level" substitutionGroup="formula">
 		<xs:complexType>
-			<xs:attribute name="ref" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
 

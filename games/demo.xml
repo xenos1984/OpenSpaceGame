@@ -29,8 +29,8 @@
 			<constant value="250"/>
 			<product>
 				<constant value="1000"/>
-				<level ref="bldMTi"/>
-				<level ref="bldMTi"/>
+				<level id="bldMTi"/>
+				<level id="bldMTi"/>
 			</product>
 		</sum>
 	</production>
@@ -40,8 +40,8 @@
 			<constant value="125"/>
 			<product>
 				<constant value="500"/>
-				<level ref="bldMSi"/>
-				<level ref="bldMSi"/>
+				<level id="bldMSi"/>
+				<level id="bldMSi"/>
 			</product>
 		</sum>
 	</production>
