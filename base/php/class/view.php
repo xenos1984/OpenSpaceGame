@@ -18,8 +18,8 @@ class view
 		$this->celb = celb::bycoord($_REQUEST['celb']);
 
 		$this->xmldoc = new DOMDocument();
-		$this->xmldoc->version = "1.0";
-		$this->xmldoc->encoding = "utf8";
+		$this->xmldoc->version = '1.0';
+		$this->xmldoc->encoding = 'utf8';
 		$this->xmldoc->standalone = false;
 		$this->xmldoc->resolveExternals = true;
 		$this->xmldoc->substituteEntities = true;
@@ -27,10 +27,17 @@ class view
 		$this->root = $this->xmldoc->createElement('view');
 		$this->root = $this->xmldoc->appendChild($this->root);
 
-		$this->root->setAttribute("servertime", time());
-		$this->root->setAttribute("lang", $this->player->lang);
-		$this->root->setAttribute("css", $this->player->css);
-		$this->root->setAttribute("xslt", $this->player->xslt);
+		$this->root->setAttribute('servertime', time());
+		$this->root->setAttribute('lang', $this->player->lang);
+		$this->root->setAttribute('css', $this->player->css);
+		$this->root->setAttribute('xslt', $this->player->xslt);
+
+		$posxml = $this->xmldoc->createElement('positions');
+		$posxml = $this->root->appendChild($posxml);
+		$posxml->setAttribute('curg', $this->celb->galaxy);
+		$posxml->setAttribute('curs', $this->celb->sun);
+		$posxml->setAttribute('curo', $this->celb->orbit);
+		$posxml->setAttribute('curc', $this->celb->celb);
 	}
 }
 ?>
