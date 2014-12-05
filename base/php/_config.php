@@ -24,5 +24,14 @@ class config
 	const CELB_MAXORBITS = 12;
 	// Maximum number of celestial bodies per orbit
 	const CELB_MAXCELBS = 3;
+
+	// Default settings
+
+	// Default language
+	const DEF_LANG = 'en-US';
+	// Default CSS style
+	const DEF_CSS = '../../styles/css/default/';
+	// Default XSLT style
+	const DEF_XSLT = '../../styles/xslt/default/';
 }
 ?>

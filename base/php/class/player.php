@@ -52,7 +52,12 @@ class player
 		db::insert('players', array(
 			'nick' => $nick,
 			'pwhash' => $pwhash,
-			'email' => $email));
+			'email' => $email,
+			'lang' => config::DEF_LANG,
+			'css' => config::DEF_CSS,
+			'xslt' => config::DEF_XSLT,
+			'umod' => 0,
+			'banned' => 0));
 
 		return self::find($nick);
 	}
