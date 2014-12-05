@@ -13,6 +13,10 @@ class view
 
 	public function __construct()
 	{
+		$this->session = session::byid($_COOKIE['session']);
+		$this->player = player::byid($this->session->user);
+		$this->celb = celb::bycoord($_REQUEST['celb']);
+
 		$this->xmldoc = new DOMDocument();
 		$this->xmldoc->version = "1.0";
 		$this->xmldoc->encoding = "utf8";
@@ -23,9 +27,10 @@ class view
 		$this->root = $this->xmldoc->createElement('view');
 		$this->root = $this->xmldoc->appendChild($this->root);
 
-		$this->session = session::byid($_COOKIE['session']);
-		$this->player = player::byid($this->session->user);
-		$this->celb = celb::bycoord($_REQUEST['celb']);
+		$this->root->setAttribute("servertime", time());
+		$this->root->setAttribute("lang", $this->player->lang);
+		$this->root->setAttribute("css", $this->player->css);
+		$this->root->setAttribute("xslt", $this->player->xslt);
 	}
 }
 ?>
