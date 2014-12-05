@@ -38,6 +38,21 @@ class view
 		$posxml->setAttribute('curs', $this->celb->sun);
 		$posxml->setAttribute('curo', $this->celb->orbit);
 		$posxml->setAttribute('curc', $this->celb->celb);
+
+		$celbs = celb::byowner($this->player->id);
+		foreach($celbs as $celb)
+		{
+			$px = $this->xmldoc->createElement('position');
+			$px = $posxml->appendChild($px);
+
+			$px->setAttribute('name', $celb->name);
+			$px->setAttribute('galaxy', $celb->galaxy);
+			$px->setAttribute('sun', $celb->sun);
+			$px->setAttribute('orbit', $celb->orbit);
+			$px->setAttribute('celb', $celb->celb);
+			$px->setAttribute('tid', '...');
+			$px->setAttribute('tname', '...');
+		}
 	}
 }
 ?>
