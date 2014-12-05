@@ -62,6 +62,14 @@ class player
 		return self::find($nick);
 	}
 
+	public static function byid($id)
+	{
+		$data = db::select_one('players', array('id' => $id));
+		if(!$data)
+			return false;
+		return new player($data);
+	}
+
 	public static function checkpass($nick, $password)
 	{
 		$data = db::select_one('players', array('nick' => $nick));
