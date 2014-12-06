@@ -51,14 +51,10 @@ foreach($ress as $res)
 {
 	$id = $res->getAttribute("id");
 	$value = $res->getAttribute("value");
-//	$product = $res->getAttribute("product") / 3600.0;
-	$storage = $res->getAttribute("storage");
 
 	$ok = db::insert('resources', array(
 		'id' => $id,
-		'value' => $value/*,
-		'product' => $product,
-		'storage' => $storage*/));
+		'value' => $value));
 	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($value)</li>\n";
 	$allok &= $ok;
 }
@@ -111,38 +107,6 @@ foreach($buildings as $building)
 		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&larr; $res($value, $factor)</li>\n";
 		$allok &= $ok;
 	}
-/*
-	$products = $xpath->query("product", $building);
-	foreach($products as $product)
-	{
-		$res = $product->getAttribute("id");
-		$value = $product->getAttribute("value") / 3600.0;
-		$power = $product->getAttribute("power");
-
-		$ok = db::insert('products', array(
-			'building' => $id,
-			'res' => $res,
-			'value' => $value,
-			'power' => $power));
-		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&uarr; $res($value, $power)</li>\n";
-		$allok &= $ok;
-	}
-
-	$storages = $xpath->query("storage", $building);
-	foreach($storages as $storage)
-	{
-		$res = $storage->getAttribute("id");
-		$value = $storage->getAttribute("value");
-		$power = $storage->getAttribute("power");
-
-		$ok = db::insert('storages', array(
-			'building' => $id,
-			'res' => $res,
-			'value' => $value,
-			'power' => $power));
-		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&darr; $res($value, $power)</li>\n";
-		$allok &= $ok;
-	}*/
 	echo "</ul></li>\n";
 }
 echo '</ul>... ';
