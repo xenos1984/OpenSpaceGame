@@ -39,6 +39,5 @@ if(!$xml->validate())
 	die("ERROR: Invalid XML generated!");
 
 // Output data.
-header("Content-Type: text/html; charset=UTF-8");
-echo $xml->output();
+$xml->output();
 ?>

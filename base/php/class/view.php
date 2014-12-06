@@ -67,7 +67,7 @@ class view
 
 			$tr = trans::find($this->player->lang, $res->id);
 			$rx->setAttribute('name', $tr->name);
-			$rx->setAttribute('id', $res->name);
+			$rx->setAttribute('id', $res->id);
 			$rx->setAttribute('present', 0);
 			$rx->setAttribute('storage', 0);
 			$rx->setAttribute('produced', 0);
@@ -81,6 +81,12 @@ class view
 
 	public final function output()
 	{
+/*		header("Content-Type: text/xml; charset=UTF-8");
+		echo $this->xmldoc->saveXML();
+		die();
+*/
+		header("Content-Type: text/html; charset=UTF-8");
+
 		// Load XSLT style.
 		$xsl = new DOMDocument;
 		$xsl->resolveExternals = true;
@@ -90,7 +96,7 @@ class view
 		// Transform data to HTML.
 		$proc = new XSLTProcessor;
 		$proc->importStyleSheet($xsl);
-		return($proc->transformToXML($this->xmldoc));
+		echo $proc->transformToXML($this->xmldoc);
 	}
 }
 ?>
