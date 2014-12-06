@@ -15,6 +15,16 @@
 			<xs:attribute name="xslt" type="xs:anyURI" default=""/>
 			<xs:attribute name="css" type="xs:anyURI" default=""/>
 		</xs:complexType>
+
+		<xs:key name="resource">
+			<xs:selector xpath="./resources/resource"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+
+		<xs:keyref name="costres" refer="resource">
+			<xs:selector xpath="./buildings/building/cost"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
 	</xs:element>
 
 	<!-- ======== Standard datasets ======== -->
