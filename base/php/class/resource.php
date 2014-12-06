@@ -26,7 +26,7 @@ class resource
 
 	public static function all()
 	{
-		$data = db::select_all('resources', array());
+		$data = db::select_all('resources', array(), array('*'), 'sort');
 		if(!$data)
 			return false;
 		return array_map(function($x) { return new resource($x); }, $data);

@@ -29,7 +29,7 @@ class building
 
 	public static function all()
 	{
-		$data = db::select_all('buildings', array());
+		$data = db::select_all('buildings', array(), array('*'), 'sort');
 		if(!$data)
 			return false;
 		return array_map(function($x) { return new building($x); }, $data);

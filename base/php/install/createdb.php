@@ -30,20 +30,23 @@ maketable("translation", array(
 // Universe information - resources
 
 maketable("resources", array(
-	array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
+	array("sort", "SMALLINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
+	array("id", "VARCHAR(16)", "NOT NULL", "UNIQUE"),
 	array("value", "REAL")));
 
 // Universe information - buildings
 
 maketable("buildings", array(
-	array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
+	array("sort", "SMALLINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
+	array("id", "VARCHAR(16)", "NOT NULL", "UNIQUE"),
 	array("time", "REAL"),
 	array("factor", "REAL")));
 
 // Universe information - researches
 
 maketable("researches", array(
-	array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
+	array("sort", "SMALLINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
+	array("id", "VARCHAR(16)", "NOT NULL", "UNIQUE"),
 	array("time", "REAL"),
 	array("factor", "REAL")));
 
