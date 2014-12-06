@@ -96,8 +96,12 @@ class db
 
 	public static function select_all($table, $conditions, $columns = array('*'), $order = null, $limit = null, $offset = null)
 	{
-		$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
-		$cmd = "SELECT " . implode(", ", $columns) . " FROM " . config::DB_PREFIX . "$table WHERE " . implode(" AND ", $where);
+		$cmd = "SELECT " . implode(", ", $columns) . " FROM " . config::DB_PREFIX . $table;
+		if(count($conditions))
+		{
+			$where = array_map(function($s) { return $s . ' = :' . $s; }, array_keys($conditions));
+			$cmd .= " WHERE " . implode(" AND ", $where);
+		}
 		if(isset($order))
 			$cmd .= " ORDER BY $order";
 		if(isset($limit))
