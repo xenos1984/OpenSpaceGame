@@ -6,26 +6,22 @@
 	<resource id="resAM"/>
 
 	<celbtype id="ctWat"/>
-	<celbtype id="ctSto"/>
 	<celbtype id="ctDes"/>
 	<celbtype id="ctGas"/>
 
 	<building id="bldMTi" time="240" factor="1.5">
-		<buildon id="ctSto"/>
 		<buildon id="ctDes"/>
 		<cost id="resTi" value="400" factor="1.5"/>
 		<cost id="resSi" value="200" factor="1.5"/>
 	</building>
 
 	<building id="bldMSi" time="240" factor="1.5">
-		<buildon id="ctSto"/>
 		<buildon id="ctDes"/>
 		<cost id="resTi" value="400" factor="1.5"/>
 		<cost id="resSi" value="200" factor="1.5"/>
 	</building>
 
 	<building id="bldLab" time="900" factor="2">
-		<buildon id="ctSto"/>
 		<buildon id="ctDes"/>
 		<buildon id="ctWat"/>
 		<buildon id="ctGas"/>
@@ -74,6 +70,16 @@
 		<translation id="resSi" name="Silicon">Silicon is required for constructing computer systems and electronic circuits.</translation>
 		<translation id="resDe" name="Deuterium">Deuterium is the most important energy supply for nuclear fusion and used as fuel for most spaceships.</translation>
 		<translation id="resAM" name="Antimatter">Antimatter is a highy efficient energy source, which is difficult to produce and store.</translation>
+
+		<translation id="ctDes" name="Desert planet">Desert planets have large amounts of titanium and silicon and can easily be settled.</translation>
+		<translation id="ctWat" name="Water planet">Water planets have large amounts of water, from which deuterium can be isolated.</translation>
+		<translation id="ctGas" name="Gas planet">Gas planets have no hard surface and are difficult to settle, but provide large amounts of deuterium.</translation>
+
+		<translation id="bldMTi" name="Titanium mine">Titanium mines produce titanium.</translation>
+		<translation id="bldMSi" name="Silicon mine">Silicon mines produce silicon.</translation>
+		<translation id="bldLab" name="Research laboratory">The research laboratory is necessary for exploring new technologies.</translation>
+
+		<translation id="tecAM" name="Antimatter technology">Antimatter technology is necessary to construct facilities which produce or consume antimatter.</translation>
 	</translations>
 
 	<translations lang="de-DE">
@@ -81,5 +87,15 @@
 		<translation id="resSi" name="Silizium">Silizium wird zum Bau von Computersystemen und Schaltkreisen benötigt.</translation>
 		<translation id="resDe" name="Deuterium">Deuterium ist der wichtigste Energieträger für die Kernfusion und dient als Treibstoff für die meisten Raumschiffe.</translation>
 		<translation id="resAM" name="Antimaterie">Antimaterie ist ein hocheffizienter Energieträger, der nur schwer herzustellen und zu lagern ist.</translation>
+
+		<translation id="ctDes" name="Wüstenplanet">Wüstenplanet haben große Vorräte an Titan und Silizium und können leicht besiedelt werden.</translation>
+		<translation id="ctWat" name="Wasserplanet">Wasserplaneten haben große Wasservorkommen, aus denen Deuterium isoliert werden kann.</translation>
+		<translation id="ctGas" name="Gasplanet">Gasplaneten haben keine feste Oberfläche und sind schwer zu besiedeln, aber bieten große Vorräte an Deuterium.</translation>
+
+		<translation id="bldMTi" name="Titanmine">Titanminen produzieren Titan.</translation>
+		<translation id="bldMSi" name="Siliziummine">Siliziumminen produzieren Silizium.</translation>
+		<translation id="bldLab" name="Forschungslabor">Das Forschungslabor ist notwendig, um neue Technologien zu erforschen.</translation>
+
+		<translation id="tecAM" name="Antimaterietechnik">Antimaterietechnik ist notwendig, um Einrichtungen zu bauen, die Antimaterie produzieren oder verbrauchen.</translation>
 	</translations>
 </game>
