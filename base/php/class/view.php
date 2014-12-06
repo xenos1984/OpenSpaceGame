@@ -2,6 +2,8 @@
 include_once("class/session.php");
 include_once("class/player.php");
 include_once("class/celb.php");
+include_once("class/resource.php");
+include_once("class/trans.php");
 
 class view
 {
@@ -52,6 +54,23 @@ class view
 			$px->setAttribute('celb', $celb->celb);
 			$px->setAttribute('tid', '...');
 			$px->setAttribute('tname', '...');
+		}
+
+		$resxml = $this->xmldoc->createElement('resources');
+		$resxml = $this->root->appendChild($resxml);
+
+		$ress = resource::all();
+		foreach($ress as $res)
+		{
+			$rx = $this->xmldoc->createElement('resource');
+			$rx = $resxml->appendChild($rx);
+
+			$tr = trans::find($this->player->lang, $res->id);
+			$rx->setAttribute('name', $tr->name);
+			$rx->setAttribute('id', $res->name);
+			$rx->setAttribute('present', 0);
+			$rx->setAttribute('storage', 0);
+			$rx->setAttribute('product', 0);
 		}
 	}
 }
