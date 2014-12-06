@@ -3,13 +3,33 @@ include_once("class/db.php");
 
 class resource
 {
-	public static function create($id, $value, $product, $storage)
+	private $id, $value;
+
+	private function __construct(&$data)
 	{
-		db::create_object('resources', array(
-			'id' => $id,
-			'value' => $value,
-			'product' => $product,
-			'storage' => $storage));
+		$this->id = $data['id'];
+		$this->value = $data['value'];
+	}
+
+	public function __get($var)
+	{
+		switch($var)
+		{
+		case 'id':
+			return $this->id;
+		case 'value':
+			return $this->value;
+		default:
+			return null;
+		}
+	}
+
+	public static function all()
+	{
+		$data = db::select_all('resources', array());
+		if(!$data)
+			return false;
+		return array_map(function($x) { return new resource($x); }, $data);
 	}
 }
 ?>

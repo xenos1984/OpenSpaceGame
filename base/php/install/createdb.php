@@ -31,9 +31,7 @@ maketable("translation", array(
 
 maketable("resources", array(
 	array("id", "VARCHAR(16)", "NOT NULL", "PRIMARY KEY"),
-	array("value", "REAL"),
-	array("storage", "REAL"),
-	array("product", "REAL")));
+	array("value", "REAL")));
 
 // Universe information - buildings
 
