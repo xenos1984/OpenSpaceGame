@@ -70,8 +70,27 @@ class view
 			$rx->setAttribute('id', $res->name);
 			$rx->setAttribute('present', 0);
 			$rx->setAttribute('storage', 0);
-			$rx->setAttribute('product', 0);
+			$rx->setAttribute('produced', 0);
 		}
+	}
+
+	public final function validate()
+	{
+		return($this->xmldoc->schemaValidate("../xml/view.xsd", LIBXML_SCHEMA_CREATE));
+	}
+
+	public final function output()
+	{
+		// Load XSLT style.
+		$xsl = new DOMDocument;
+		$xsl->resolveExternals = true;
+		$xsl->substituteEntities = true;
+		$xsl->load($this->player->xslt . $_REQUEST['view'] . ".xsl");
+
+		// Transform data to HTML.
+		$proc = new XSLTProcessor;
+		$proc->importStyleSheet($xsl);
+		return($proc->transformToXML($this->xmldoc));
 	}
 }
 ?>

@@ -5,7 +5,7 @@
 	<xsl:variable name="lang" select="/view/@lang"/>
 	<xsl:variable name="i18n" select="document('i18n.xml')/i18n"/>
 	<xsl:variable name="trans" select="$i18n/trans[position() = 1 or @lang = $lang][last()]/phrase"/>
-	<xsl:variable name="curpos" select="/view/positions/position[@galaxy = /view/positions/@curg and @solsys = /view/positions/@curs and @orbit = /view/positions/@curo and @celb = /view/positions/@curc]"/>
+	<xsl:variable name="curpos" select="/view/positions/position[@galaxy = /view/positions/@curg and @sun = /view/positions/@curs and @orbit = /view/positions/@curo and @celb = /view/positions/@curc]"/>
 
 	<xsl:template match="view">
 		<html>
@@ -135,7 +135,7 @@
 							<td class="poslist">
 								<select size="1" class="poslist" onchange="location.href = location.href.replace(/celb=[0-9]+:[0-9]+:[0-9]+:[0-9]+/g, 'celb=' + this.options[this.selectedIndex].value)">
 									<xsl:for-each select="positions/position">
-										<option class="posopt" value="{@galaxy}:{@solsys}:{@orbit}:{@celb}">
+										<option class="posopt" value="{@galaxy}:{@sun}:{@orbit}:{@celb}">
 											<xsl:if test="generate-id(.) = generate-id($curpos)">
 												<xsl:attribute name="selected">selected</xsl:attribute>
 											</xsl:if>
@@ -237,7 +237,7 @@
 		<xsl:text>[</xsl:text>
 		<xsl:value-of select="$pos/@galaxy"/>
 		<xsl:text>:</xsl:text>
-		<xsl:value-of select="$pos/@solsys"/>
+		<xsl:value-of select="$pos/@sun"/>
 		<xsl:text>:</xsl:text>
 		<xsl:value-of select="$pos/@orbit"/>
 		<xsl:text>:</xsl:text>
@@ -250,7 +250,7 @@
 		<xsl:text>location.href = location.href.replace(/celb=[0-9]+:[0-9]+:[0-9]+:[0-9]+/g, 'celb=</xsl:text>
 		<xsl:value-of select="$pos/@galaxy"/>
 		<xsl:text>:</xsl:text>
-		<xsl:value-of select="$pos/@solsys"/>
+		<xsl:value-of select="$pos/@sun"/>
 		<xsl:text>:</xsl:text>
 		<xsl:value-of select="$pos/@orbit"/>
 		<xsl:text>:</xsl:text>

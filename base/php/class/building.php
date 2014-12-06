@@ -34,5 +34,10 @@ class building
 			return false;
 		return array_map(function($x) { return new building($x); }, $data);
 	}
+
+	public function costs()
+	{
+		return db::select_all('br_costs', array('brid' => $this->id));
+	}
 }
 ?>

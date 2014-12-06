@@ -57,7 +57,7 @@
 		<xs:complexType>
 			<xs:attribute name="name" type="xs:string" use="required"/>
 			<xs:attribute name="galaxy" type="xs:positiveInteger" use="required"/>
-			<xs:attribute name="solsys" type="xs:positiveInteger" use="required"/>
+			<xs:attribute name="sun" type="xs:positiveInteger" use="required"/>
 			<xs:attribute name="orbit" type="xs:positiveInteger" use="required"/>
 			<xs:attribute name="celb" type="xs:positiveInteger" use="required"/>
 			<xs:attribute name="tid" type="xs:string" use="required"/>

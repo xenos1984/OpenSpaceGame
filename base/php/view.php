@@ -34,22 +34,11 @@ if(!file_exists("views/{$_REQUEST['view']}.php"))
 
 // Include it and generate XML data.
 include("views/{$_REQUEST['view']}.php");
-$xml = $xmlgen->generateXML();
-if(!$xml->schemaValidate("../xml/view.xsd", LIBXML_SCHEMA_CREATE))
+$xml = new viewxml();
+if(!$xml->validate())
 	die("ERROR: Invalid XML generated!");
-
-// Load XSLT style.
-$xsl = new DOMDocument;
-$xsl->resolveExternals = true;
-$xsl->substituteEntities = true;
-$xsl->load("../../styles/xslt/default/{$_REQUEST['view']}.xsl");
-
-// Transform data to HTML.
-$proc = new XSLTProcessor;
-$proc->importStyleSheet($xsl);
-$output = $proc->transformToXML($xml);
 
 // Output data.
 header("Content-Type: text/html; charset=UTF-8");
-echo $output;
+echo $xml->output();
 ?>
