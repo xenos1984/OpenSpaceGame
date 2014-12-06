@@ -9,7 +9,7 @@
 				<xs:element ref="resource" maxOccurs="unbounded"/>
 				<xs:element ref="celbtype" maxOccurs="unbounded"/>
 				<xs:element ref="building" maxOccurs="unbounded"/>
-				<!-- <xs:element ref="research" maxOccurs="unbounded"/> -->
+				<xs:element ref="research" maxOccurs="unbounded"/>
 				<xs:element ref="production" maxOccurs="unbounded"/>
 				<xs:element ref="storage" maxOccurs="unbounded"/>
 				<xs:element ref="translations" maxOccurs="unbounded"/>
@@ -17,7 +17,7 @@
 		</xs:complexType>
 
 		<xs:key name="object">
-			<xs:selector xpath=".//resource | .//celbtype | .//building"/>
+			<xs:selector xpath=".//resource | .//celbtype | .//building | .//research"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
 

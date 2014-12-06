@@ -115,5 +115,44 @@ if($allok)
 else
 	echo '<span style="color:red">Errors.</span></li>' . "\n";
 
+echo "<li>Create researches...<ul>";
+$allok = true;
+$researches = $xpath->query("/game/research");
+foreach($researches as $research)
+{
+	$id = $research->getAttribute("id");
+	$time = $research->getAttribute("time");
+	$factor = $research->getAttribute("factor");
+
+	$ok = db::insert('researches', array(
+		'id' => $id,
+		'time' => $time,
+		'factor' => $factor));
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($time, $factor)<ul>";
+	$allok &= $ok;
+
+	$costs = $xpath->query("cost", $research);
+	foreach($costs as $cost)
+	{
+		$res = $cost->getAttribute("id");
+		$value = $cost->getAttribute("value");
+		$factor = $cost->getAttribute("factor");
+
+		$ok = db::insert('br_costs', array(
+			'brid' => $id,
+			'res' => $res,
+			'value' => $value,
+			'factor' => $factor));
+		echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">&larr; $res($value, $factor)</li>\n";
+		$allok &= $ok;
+	}
+	echo "</ul></li>\n";
+}
+echo '</ul>... ';
+if($allok)
+	echo '<span style="color:green">Success.</span></li>' . "\n";
+else
+	echo '<span style="color:red">Errors.</span></li>' . "\n";
+
 echo "</ul>\n";
 ?>

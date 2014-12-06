@@ -24,6 +24,21 @@
 		<cost id="resSi" value="200" factor="1.5"/>
 	</building>
 
+	<building id="bldLab" time="900" factor="2">
+		<buildon id="ctSto"/>
+		<buildon id="ctDes"/>
+		<buildon id="ctWat"/>
+		<buildon id="ctGas"/>
+		<cost id="resTi" value="2000" factor="2"/>
+		<cost id="resSi" value="2000" factor="2"/>
+	</building>
+
+	<research id="tecAM" time="900" factor="2">
+		<cost id="resTi" value="2000" factor="2"/>
+		<cost id="resSi" value="4000" factor="2"/>
+		<pretech id="bldLab" level="2"/>
+	</research>
+
 	<production resource="resTi" celbtype="ctSto">
 		<sum>
 			<constant value="250"/>
