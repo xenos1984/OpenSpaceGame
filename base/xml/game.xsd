@@ -163,6 +163,30 @@
 		</xs:complexType>
 	</xs:element>
 
+	<xs:element name="power" substitutionGroup="formula">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="formula" minOccurs="2" maxOccurs="2"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="exp" substitutionGroup="formula">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="formula"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="log" substitutionGroup="formula">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="formula"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
 	<!-- Translation for a single language. -->
 
 	<xs:element name="translations">

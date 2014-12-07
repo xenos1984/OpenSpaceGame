@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <game>
-	<resource id="resTi" value="50000"/>
-	<resource id="resSi" value="25000"/>
+	<resource id="resTi" value="500"/>
+	<resource id="resSi" value="250"/>
 	<resource id="resDe"/>
 	<resource id="resAM"/>
 
@@ -9,16 +9,16 @@
 	<celbtype id="ctWat" start="false"/>
 	<celbtype id="ctGas" start="false"/>
 
-	<building id="bldMTi" time="240" factor="1.5">
+	<building id="bldMTi" time="120" factor="1.5">
 		<buildon id="ctDes"/>
-		<cost id="resTi" value="400" factor="1.5"/>
-		<cost id="resSi" value="200" factor="1.5"/>
+		<cost id="resTi" value="60" factor="1.5"/>
+		<cost id="resSi" value="15" factor="1.5"/>
 	</building>
 
-	<building id="bldMSi" time="240" factor="1.5">
+	<building id="bldMSi" time="120" factor="1.6">
 		<buildon id="ctDes"/>
-		<cost id="resTi" value="400" factor="1.5"/>
-		<cost id="resSi" value="200" factor="1.5"/>
+		<cost id="resTi" value="48" factor="1.6"/>
+		<cost id="resSi" value="24" factor="1.6"/>
 	</building>
 
 	<building id="bldLab" time="900" factor="2">
@@ -37,32 +37,38 @@
 
 	<production resource="resTi" celbtype="ctDes">
 		<sum>
-			<constant value="250"/>
+			<constant value="30"/>
 			<product>
-				<constant value="1000"/>
+				<constant value="30"/>
 				<level id="bldMTi"/>
-				<level id="bldMTi"/>
+				<power>
+					<constant value="1.1"/>
+					<level id="bldMTi"/>
+				</power>
 			</product>
 		</sum>
 	</production>
 
 	<production resource="resSi" celbtype="ctDes">
 		<sum>
-			<constant value="125"/>
+			<constant value="15"/>
 			<product>
-				<constant value="500"/>
+				<constant value="20"/>
 				<level id="bldMSi"/>
-				<level id="bldMSi"/>
+				<power>
+					<constant value="1.1"/>
+					<level id="bldMSi"/>
+				</power>
 			</product>
 		</sum>
 	</production>
 
 	<storage resource="resTi" celbtype="ctDes">
-		<constant value="100000"/>
+		<constant value="10000"/>
 	</storage>
 
 	<storage resource="resSi" celbtype="ctDes">
-		<constant value="100000"/>
+		<constant value="10000"/>
 	</storage>
 
 	<translations lang="en-US">
