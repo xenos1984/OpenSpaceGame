@@ -70,7 +70,7 @@ class view
 			$rx->setAttribute('id', $res->id);
 			$rx->setAttribute('present', 0);
 			$rx->setAttribute('storage', 0);
-			$rx->setAttribute('produced', 0);
+			$rx->setAttribute('production', 0);
 		}
 	}
 

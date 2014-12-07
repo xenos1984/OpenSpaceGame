@@ -80,7 +80,7 @@
 				</td>
 				<td>
 					<xsl:choose>
-						<xsl:when test="$res/@produced = 0">
+						<xsl:when test="$res/@production = 0">
 							<xsl:attribute name="class">costbad</xsl:attribute>
 							<xsl:value-of select="$trans[@key = 'noprod']"/>
 						</xsl:when>
@@ -93,7 +93,7 @@
 							</xsl:attribute>
 							<xsl:call-template name="countdown">
 								<xsl:with-param name="id" select="concat('prod', generate-id(.))"/>
-								<xsl:with-param name="value" select="/view/@servertime + floor(3600 * (@value - $res/@present) div $res/@produced)"/>
+								<xsl:with-param name="value" select="/view/@servertime + floor(3600 * (@value - $res/@present) div $res/@production)"/>
 							</xsl:call-template>
 						</xsl:otherwise>
 					</xsl:choose>
