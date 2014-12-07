@@ -3,11 +3,49 @@ abstract class formula
 {
 	abstract public function parameters();
 	abstract public function evaluate($values);
+
+	public static function fromxml($xml)
+	{
+		switch($xml->localName)
+		{
+		case 'constant':
+			return new formula_constant($xml->getAttribute('value'));
+		case 'level':
+			return new formula_level($xml->getAttribute('id'));
+		case 'sum':
+			$terms = array();
+			foreach($xml->childNodes as $cn)
+			{
+				if($sf = self::fromxml($cn))
+					$terms[] = $sf;
+				else
+					return false;
+			}
+			return new formula_sum($terms);
+		case 'product':
+			$terms = array();
+			foreach($xml->childNodes as $cn)
+			{
+				if($sf = self::fromxml($cn))
+					$terms[] = $sf;
+				else
+					return false;
+			}
+			return new formula_sum($terms);
+		default:
+			return false;
+		}
+	}
 }
 
-class formula_const extends formula
+class formula_constant extends formula
 {
 	private $value;
+
+	public function __construct($x)
+	{
+		$this->value = $x;
+	}
 
 	public function parameters()
 	{
@@ -24,6 +62,11 @@ class formula_level extends formula
 {
 	private $id;
 
+	public function __construct($x)
+	{
+		$this->id = $x;
+	}
+
 	public function parameters()
 	{
 		return array($this->id);
@@ -34,13 +77,18 @@ class formula_level extends formula
 		if(array_key_exists($this->id, $values))
 			return $values[$this->id];
 		else
-			return null;
+			return 0;
 	}
 }
 
 class formula_sum extends formula
 {
 	private $terms;
+
+	public function __construct($x)
+	{
+		$this->terms = $x;
+	}
 
 	public function parameters()
 	{
@@ -56,6 +104,11 @@ class formula_sum extends formula
 class formula_product extends formula
 {
 	private $terms;
+
+	public function __construct($x)
+	{
+		$this->terms = $x;
+	}
 
 	public function parameters()
 	{
