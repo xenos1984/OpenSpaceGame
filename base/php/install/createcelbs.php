@@ -53,4 +53,5 @@ echo "<li>Total solar systems: " . (config::CELB_GALAXIES * config::CELB_SUNS) .
 echo "<li>Total orbits: $to</li>\n";
 echo "<li>Total celestial bodies: $tc</li>\n";
 echo "</ul>\n";
+flush();
 ?>

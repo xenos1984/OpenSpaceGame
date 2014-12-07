@@ -182,5 +182,5 @@ maketable("building_list", array(
 	array("finished", "BIGINT", "NOT NULL")));
 
 echo "</ul>\n";
-
+flush();
 ?>

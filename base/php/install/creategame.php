@@ -155,4 +155,5 @@ else
 	echo '<span style="color:red">Errors.</span></li>' . "\n";
 
 echo "</ul>\n";
+flush();
 ?>
