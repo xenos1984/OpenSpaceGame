@@ -91,11 +91,11 @@ class celb
 		return new celb($data);
 	}
 
-	public function sethome($uid)
+	public function sethome($uid, $name = config::DEF_HOME)
 	{
 		$this->owner = $uid;
-		$this->name = config::DEF_HOME;
-		return db::update('celbs', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb), array('owner' => $uid, 'name' => config::DEF_HOME));
+		$this->name = $name;
+		return db::update('celbs', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb), array('owner' => $uid, 'name' => $name));
 	}
 }
 ?>

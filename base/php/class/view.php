@@ -52,8 +52,9 @@ class view
 			$px->setAttribute('sun', $celb->sun);
 			$px->setAttribute('orbit', $celb->orbit);
 			$px->setAttribute('celb', $celb->celb);
-			$px->setAttribute('tid', '...');
-			$px->setAttribute('tname', '...');
+			$px->setAttribute('tid', $celb->type);
+			$tr = trans::find($this->player->lang, $celb->type);
+			$px->setAttribute('tname', $tr->name);
 		}
 
 		$resxml = $this->xmldoc->createElement('resources');
