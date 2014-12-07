@@ -16,6 +16,8 @@ abstract class formula
 			$terms = array();
 			foreach($xml->childNodes as $cn)
 			{
+				if($cn->nodeType != XML_ELEMENT_NODE)
+					continue;
 				if($sf = self::fromxml($cn))
 					$terms[] = $sf;
 				else
@@ -26,6 +28,8 @@ abstract class formula
 			$terms = array();
 			foreach($xml->childNodes as $cn)
 			{
+				if($cn->nodeType != XML_ELEMENT_NODE)
+					continue;
 				if($sf = self::fromxml($cn))
 					$terms[] = $sf;
 				else

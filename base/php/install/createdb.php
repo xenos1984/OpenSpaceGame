@@ -73,6 +73,15 @@ maketable("sdm_costs", array(
 	array("cost", "REAL"),
 	array("PRIMARY KEY", "(sdmid, res)")));
 
+// Universe information - production and storage formulas
+
+maketable("prodstore", array(
+	array("celb", "VARCHAR(8)", "NOT NULL"),
+	array("res", "VARCHAR(8)", "NOT NULL"),
+	array("production", "TEXT", "NOT NULL"),
+	array("storage", "TEXT", "NOT NULL"),
+	array("PRIMARY KEY", "(celb, res)")));
+
 // Players
 
 maketable("players", array(

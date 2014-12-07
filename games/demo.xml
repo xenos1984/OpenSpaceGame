@@ -35,7 +35,7 @@
 		<pretech id="bldLab" level="2"/>
 	</research>
 
-	<production resource="resTi" celbtype="ctSto">
+	<production resource="resTi" celbtype="ctDes">
 		<sum>
 			<constant value="250"/>
 			<product>
@@ -46,7 +46,7 @@
 		</sum>
 	</production>
 
-	<production resource="resSi" celbtype="ctSto">
+	<production resource="resSi" celbtype="ctDes">
 		<sum>
 			<constant value="125"/>
 			<product>
@@ -57,11 +57,11 @@
 		</sum>
 	</production>
 
-	<storage resource="resTi" celbtype="ctSto">
+	<storage resource="resTi" celbtype="ctDes">
 		<constant value="100000"/>
 	</storage>
 
-	<storage resource="resSi" celbtype="ctSto">
+	<storage resource="resSi" celbtype="ctDes">
 		<constant value="100000"/>
 	</storage>
 

@@ -1,6 +1,7 @@
 <?php
 include_once("config.php");
 include_once("class/db.php");
+include_once("class/formula.php");
 
 echo "<h2>Create universe configuration</h2>\n";
 
@@ -147,6 +148,50 @@ foreach($researches as $research)
 		$allok &= $ok;
 	}
 	echo "</ul></li>\n";
+}
+echo '</ul>... ';
+if($allok)
+	echo '<span style="color:green">Success.</span></li>' . "\n";
+else
+	echo '<span style="color:red">Errors.</span></li>' . "\n";
+
+echo "<li>Create resource productions and storages...<ul>";
+$allok = true;
+$cts = $xpath->query("/game/celbtype");
+$ress = $xpath->query("/game/resource");
+$zero = serialize(new formula_constant(0));
+foreach($cts as $ct)
+{
+	foreach($ress as $res)
+	{
+		$allok &= db::insert('prodstore', array(
+			'celb' => $ct->getAttribute('id'),
+			'res' => $res->getAttribute('id'),
+			'production' => $zero,
+			'storage' => $zero));
+	}
+}
+$prods = $xpath->query("/game/production");
+foreach($prods as $prod)
+{
+	$res = $prod->getAttribute('resource');
+	$ct = $prod->getAttribute('celbtype');
+	$fn = $xpath->query("./child::*", $prod);
+	$formula = formula::fromxml($fn->item(0));
+	$ok = db::update('prodstore', array('celb' => $ct, 'res' => $res), array('production' => serialize($formula)));
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$ct &rarr; $res</li>\n";
+	$allok &= $ok;
+}
+$stores = $xpath->query("/game/storage");
+foreach($stores as $store)
+{
+	$res = $store->getAttribute('resource');
+	$ct = $store->getAttribute('celbtype');
+	$fn = $xpath->query("./child::*", $store);
+	$formula = formula::fromxml($fn->item(0));
+	$ok = db::update('prodstore', array('celb' => $ct, 'res' => $res), array('storage' => serialize($formula)));
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$ct &larr; $res</li>\n";
+	$allok &= $ok;
 }
 echo '</ul>... ';
 if($allok)
