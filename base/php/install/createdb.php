@@ -56,24 +56,6 @@ maketable("buildon", array(
 	array("celb", "VARCHAR(16)", "NOT NULL"),
 	array("building", "VARCHAR(16)", "NOT NULL")));
 
-// Universe information - storage capacity of buildings
-
-maketable("storages", array(
-	array("building", "VARCHAR(16)", "NOT NULL"),
-	array("res", "VARCHAR(16)", "NOT NULL"),
-	array("value", "REAL"),
-	array("power", "REAL"),
-	array("PRIMARY KEY", "(building, res)")));
-
-// Universe information - resource production of buildings
-
-maketable("products", array(
-	array("building", "VARCHAR(16)", "NOT NULL"),
-	array("res", "VARCHAR(16)", "NOT NULL"),
-	array("value", "REAL"),
-	array("power", "REAL"),
-	array("PRIMARY KEY", "(building, res)")));
-
 // Universe information - costs for buildings and research (leveled objects)
 
 maketable("br_costs", array(
@@ -103,6 +85,27 @@ maketable("players", array(
 	array("xslt", "VARCHAR(256)", "NOT NULL"),
 	array("umod", "BIGINT"),
 	array("banned", "BIGINT")));
+
+// Players - research
+
+maketable("research_level", array(
+	array("player", "BIGINT", "NOT NULL"),
+	array("research", "VARCHAR(16)", "NOT NULL"),
+	array("level", "SMALLINT"),
+	array("PRIMARY KEY", "(player, research)")));
+
+maketable("research_list", array(
+	array("id", "BIGINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
+	array("prev", "BIGINT"),
+	array("next", "BIGINT"),
+	array("player", "BIGINT", "NOT NULL"),
+	array("galaxy", "SMALLINT", "NOT NULL"),
+	array("sun", "SMALLINT", "NOT NULL"),
+	array("orbit", "SMALLINT", "NOT NULL"),
+	array("celb", "SMALLINT", "NOT NULL"),
+	array("research", "VARCHAR(16)", "NOT NULL"),
+	array("level", "SMALLINT"),
+	array("finished", "BIGINT", "NOT NULL")));
 
 // Sessions
 
@@ -140,6 +143,43 @@ maketable("celbs", array(
 	array("owner", "BIGINT"),
 	array("name", "VARCHAR(32)"),
 	array("PRIMARY KEY", "(galaxy, sun, orbit, celb)")));
+
+// Celestial bodies - resources
+
+maketable("celb_ress", array(
+	array("galaxy", "SMALLINT", "NOT NULL"),
+	array("sun", "SMALLINT", "NOT NULL"),
+	array("orbit", "SMALLINT", "NOT NULL"),
+	array("celb", "SMALLINT", "NOT NULL"),
+	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("present", "REAL"),
+	array("production", "REAL"),
+	array("storage", "REAL"),
+	array("time", "BIGINT", "NOT NULL"),
+	array("PRIMARY KEY", "(galaxy, sun, orbit, celb, res)")));
+
+// Celestial bodies - buildings
+
+maketable("building_level", array(
+	array("galaxy", "SMALLINT", "NOT NULL"),
+	array("sun", "SMALLINT", "NOT NULL"),
+	array("orbit", "SMALLINT", "NOT NULL"),
+	array("celb", "SMALLINT", "NOT NULL"),
+	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("level", "SMALLINT"),
+	array("PRIMARY KEY", "(galaxy, sun, orbit, celb, building)")));
+
+maketable("building_list", array(
+	array("id", "BIGINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
+	array("prev", "BIGINT"),
+	array("next", "BIGINT"),
+	array("galaxy", "SMALLINT", "NOT NULL"),
+	array("sun", "SMALLINT", "NOT NULL"),
+	array("orbit", "SMALLINT", "NOT NULL"),
+	array("celb", "SMALLINT", "NOT NULL"),
+	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("level", "SMALLINT"),
+	array("finished", "BIGINT", "NOT NULL")));
 
 echo "</ul>\n";
 
