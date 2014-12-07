@@ -36,7 +36,7 @@
 
 	<xs:element name="resource">
 		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="objectid" use="required"/>
 			<xs:attribute name="value" type="xs:float" default="0"/>
 		</xs:complexType>
 	</xs:element>
@@ -45,7 +45,7 @@
 
 	<xs:element name="celbtype">
 		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="objectid" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -56,13 +56,13 @@
 			<xs:sequence>
 				<xs:element name="buildon" maxOccurs="unbounded">
 					<xs:complexType>
-						<xs:attribute name="id" type="xs:string" use="required"/>
+						<xs:attribute name="id" type="objectid" use="required"/>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="cost" type="brcost" maxOccurs="unbounded"/>
 				<xs:element ref="pretech" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="objectid" use="required"/>
 			<xs:attribute name="time" type="xs:float" use="required"/>
 			<xs:attribute name="factor" type="xs:float" use="required"/>
 		</xs:complexType>
@@ -76,7 +76,7 @@
 				<xs:element name="cost" type="brcost" maxOccurs="unbounded"/>
 				<xs:element ref="pretech" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="objectid" use="required"/>
 			<xs:attribute name="time" type="xs:float" use="required"/>
 			<xs:attribute name="factor" type="xs:float" use="required"/>
 		</xs:complexType>
@@ -85,7 +85,7 @@
 	<!-- Single resource cost for a building or research. -->
 
 	<xs:complexType name="brcost">
-		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="id" type="objectid" use="required"/>
 		<xs:attribute name="value" type="xs:float" default="0"/>
 		<xs:attribute name="factor" type="xs:float" default="1"/>
 	</xs:complexType>
@@ -93,7 +93,7 @@
 	<!-- Single resource cost for a ship, defense or missile. -->
 
 	<xs:complexType name="sdmcost">
-		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="id" type="objectid" use="required"/>
 		<xs:attribute name="value" type="xs:float" default="0"/>
 	</xs:complexType>
 
@@ -101,7 +101,7 @@
 
 	<xs:element name="pretech">
 		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="objectid" use="required"/>
 			<xs:attribute name="level" type="xs:nonNegativeInteger" default="0"/>
 		</xs:complexType>
 	</xs:element>
@@ -113,8 +113,8 @@
 			<xs:sequence>
 				<xs:element ref="formula"/>
 			</xs:sequence>
-			<xs:attribute name="resource" type="xs:string" use="required"/>
-			<xs:attribute name="celbtype" type="xs:string" use="required"/>
+			<xs:attribute name="resource" type="objectid" use="required"/>
+			<xs:attribute name="celbtype" type="objectid" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -125,8 +125,8 @@
 			<xs:sequence>
 				<xs:element ref="formula"/>
 			</xs:sequence>
-			<xs:attribute name="resource" type="xs:string" use="required"/>
-			<xs:attribute name="celbtype" type="xs:string" use="required"/>
+			<xs:attribute name="resource" type="objectid" use="required"/>
+			<xs:attribute name="celbtype" type="objectid" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -142,7 +142,7 @@
 
 	<xs:element name="level" substitutionGroup="formula">
 		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="objectid" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -179,10 +179,19 @@
 		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="xs:string">
-					<xs:attribute name="id" type="xs:string"/>
+					<xs:attribute name="id" type="objectid"/>
 					<xs:attribute name="name" type="xs:string"/>
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
+
+	<!-- Simple type for object ID -->
+	<xs:simpleType name="objectid">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+			<xs:pattern value="[a-zA-Z0-9_]+"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

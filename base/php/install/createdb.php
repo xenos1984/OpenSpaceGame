@@ -22,7 +22,7 @@ echo "<ul>\n";
 
 maketable("translation", array(
 	array("lang", "VARCHAR(8)", "NOT NULL"),
-	array("id", "VARCHAR(16)", "NOT NULL"),
+	array("id", "VARCHAR(8)", "NOT NULL"),
 	array("name", "VARCHAR(64)"),
 	array("descr", "TEXT"),
 	array("PRIMARY KEY", "(lang, id)")));
@@ -31,14 +31,14 @@ maketable("translation", array(
 
 maketable("resources", array(
 	array("sort", "SMALLINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
-	array("id", "VARCHAR(16)", "NOT NULL", "UNIQUE"),
+	array("id", "VARCHAR(8)", "NOT NULL", "UNIQUE"),
 	array("value", "REAL")));
 
 // Universe information - buildings
 
 maketable("buildings", array(
 	array("sort", "SMALLINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
-	array("id", "VARCHAR(16)", "NOT NULL", "UNIQUE"),
+	array("id", "VARCHAR(8)", "NOT NULL", "UNIQUE"),
 	array("time", "REAL"),
 	array("factor", "REAL")));
 
@@ -46,21 +46,21 @@ maketable("buildings", array(
 
 maketable("researches", array(
 	array("sort", "SMALLINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
-	array("id", "VARCHAR(16)", "NOT NULL", "UNIQUE"),
+	array("id", "VARCHAR(8)", "NOT NULL", "UNIQUE"),
 	array("time", "REAL"),
 	array("factor", "REAL")));
 
 // Universe information - buildings allowed on celb type
 
 maketable("buildon", array(
-	array("celb", "VARCHAR(16)", "NOT NULL"),
-	array("building", "VARCHAR(16)", "NOT NULL")));
+	array("celb", "VARCHAR(8)", "NOT NULL"),
+	array("building", "VARCHAR(8)", "NOT NULL")));
 
 // Universe information - costs for buildings and research (leveled objects)
 
 maketable("br_costs", array(
-	array("brid", "VARCHAR(16)", "NOT NULL"),
-	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("brid", "VARCHAR(8)", "NOT NULL"),
+	array("res", "VARCHAR(8)", "NOT NULL"),
 	array("value", "REAL"),
 	array("factor", "REAL"),
 	array("PRIMARY KEY", "(brid, res)")));
@@ -68,8 +68,8 @@ maketable("br_costs", array(
 // Universe information - costs for ships, defense and missiles (mass objects)
 
 maketable("sdm_costs", array(
-	array("sdmid", "VARCHAR(16)", "NOT NULL"),
-	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("sdmid", "VARCHAR(8)", "NOT NULL"),
+	array("res", "VARCHAR(8)", "NOT NULL"),
 	array("cost", "REAL"),
 	array("PRIMARY KEY", "(sdmid, res)")));
 
@@ -90,7 +90,7 @@ maketable("players", array(
 
 maketable("research_level", array(
 	array("player", "BIGINT", "NOT NULL"),
-	array("research", "VARCHAR(16)", "NOT NULL"),
+	array("research", "VARCHAR(8)", "NOT NULL"),
 	array("level", "SMALLINT"),
 	array("PRIMARY KEY", "(player, research)")));
 
@@ -103,7 +103,7 @@ maketable("research_list", array(
 	array("sun", "SMALLINT", "NOT NULL"),
 	array("orbit", "SMALLINT", "NOT NULL"),
 	array("celb", "SMALLINT", "NOT NULL"),
-	array("research", "VARCHAR(16)", "NOT NULL"),
+	array("research", "VARCHAR(8)", "NOT NULL"),
 	array("level", "SMALLINT"),
 	array("finished", "BIGINT", "NOT NULL")));
 
@@ -139,7 +139,7 @@ maketable("celbs", array(
 	array("sun", "SMALLINT", "NOT NULL"),
 	array("orbit", "SMALLINT", "NOT NULL"),
 	array("celb", "SMALLINT", "NOT NULL"),
-	array("type", "VARCHAR(16)", "NOT NULL"),
+	array("type", "VARCHAR(8)", "NOT NULL"),
 	array("owner", "BIGINT"),
 	array("name", "VARCHAR(32)"),
 	array("PRIMARY KEY", "(galaxy, sun, orbit, celb)")));
@@ -151,7 +151,7 @@ maketable("celb_ress", array(
 	array("sun", "SMALLINT", "NOT NULL"),
 	array("orbit", "SMALLINT", "NOT NULL"),
 	array("celb", "SMALLINT", "NOT NULL"),
-	array("res", "VARCHAR(16)", "NOT NULL"),
+	array("res", "VARCHAR(8)", "NOT NULL"),
 	array("present", "REAL"),
 	array("production", "REAL"),
 	array("storage", "REAL"),
@@ -165,7 +165,7 @@ maketable("building_level", array(
 	array("sun", "SMALLINT", "NOT NULL"),
 	array("orbit", "SMALLINT", "NOT NULL"),
 	array("celb", "SMALLINT", "NOT NULL"),
-	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("building", "VARCHAR(8)", "NOT NULL"),
 	array("level", "SMALLINT"),
 	array("PRIMARY KEY", "(galaxy, sun, orbit, celb, building)")));
 
@@ -177,7 +177,7 @@ maketable("building_list", array(
 	array("sun", "SMALLINT", "NOT NULL"),
 	array("orbit", "SMALLINT", "NOT NULL"),
 	array("celb", "SMALLINT", "NOT NULL"),
-	array("building", "VARCHAR(16)", "NOT NULL"),
+	array("building", "VARCHAR(8)", "NOT NULL"),
 	array("level", "SMALLINT"),
 	array("finished", "BIGINT", "NOT NULL")));
 
