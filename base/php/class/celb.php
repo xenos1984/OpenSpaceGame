@@ -120,5 +120,26 @@ class celb
 		}
 		return true;
 	}
+
+	public function resvalues($res = null)
+	{
+		$now = time();
+
+		if(is_null($res))
+		{
+			$data = select_all('celb_ress', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb));
+			foreach($data as &$item)
+			{
+				$item['present'] = max($item['present'], min($item['storage'], $item['present'] + $item['production'] * ($now - $item['time'])));
+				$item['time'] = $now;
+			}
+		}
+		else
+		{
+			$data = select_one('celb_ress', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb, 'res' => $res));
+			$data['present'] = max($data['present'], min($data['storage'], $data['present'] + $data['production'] * ($now - $data['time'])));
+			$data['time'] = $now;
+		}
+	}
 }
 ?>
