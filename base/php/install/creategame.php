@@ -45,6 +45,26 @@ if($allok)
 else
 	echo '<span style="color:red">Errors.</span></li>' . "\n";
 
+echo "<li>Create celestial body types...<ul>";
+$allok = true;
+$celbs = $xpath->query("/game/celbtype");
+foreach($celbs as $celb)
+{
+	$id = $celb->getAttribute("id");
+	$start = (bool)($celb->getAttribute("start"));
+
+	$ok = db::insert('celbtypes', array(
+		'id' => $id,
+		'start' => $start));
+	echo "<li style=\"color:" . ($ok ? 'green' : 'red') . "\">$id($start)</li>\n";
+	$allok &= $ok;
+}
+echo '</ul>... ';
+if($allok)
+	echo '<span style="color:green">Success.</span></li>' . "\n";
+else
+	echo '<span style="color:red">Errors.</span></li>' . "\n";
+
 echo "<li>Create resources...<ul>";
 $allok = true;
 $ress = $xpath->query("/game/resource");

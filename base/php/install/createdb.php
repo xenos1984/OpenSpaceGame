@@ -27,6 +27,13 @@ maketable("translation", array(
 	array("descr", "TEXT"),
 	array("PRIMARY KEY", "(lang, id)")));
 
+// Universe information - celestial body types
+
+maketable("celbtypes", array(
+	array("sort", "SMALLINT", "NOT NULL", "PRIMARY KEY", "AUTO_INCREMENT"),
+	array("id", "VARCHAR(8)", "NOT NULL", "UNIQUE"),
+	array("start", "TINYINT")));
+
 // Universe information - resources
 
 maketable("resources", array(

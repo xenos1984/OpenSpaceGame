@@ -5,9 +5,9 @@
 	<resource id="resDe"/>
 	<resource id="resAM"/>
 
-	<celbtype id="ctWat"/>
-	<celbtype id="ctDes"/>
-	<celbtype id="ctGas"/>
+	<celbtype id="ctDes" start="true"/>
+	<celbtype id="ctWat" start="false"/>
+	<celbtype id="ctGas" start="false"/>
 
 	<building id="bldMTi" time="240" factor="1.5">
 		<buildon id="ctDes"/>

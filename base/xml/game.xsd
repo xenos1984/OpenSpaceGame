@@ -46,6 +46,7 @@
 	<xs:element name="celbtype">
 		<xs:complexType>
 			<xs:attribute name="id" type="objectid" use="required"/>
+			<xs:attribute name="start" type="xs:boolean" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
