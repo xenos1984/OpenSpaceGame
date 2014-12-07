@@ -33,5 +33,9 @@ class config
 	const DEF_CSS = '../../styles/css/default/';
 	// Default XSLT style
 	const DEF_XSLT = '../../styles/xslt/default/';
+	// Default name for home planet
+	const DEF_HOME = 'Home planet';
+	// Default name for colony
+	const DEF_COLONY = 'Colony';
 }
 ?>

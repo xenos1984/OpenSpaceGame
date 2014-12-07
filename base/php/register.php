@@ -21,12 +21,13 @@ if($_REQUEST["pass1"] != $_REQUEST["pass2"])
 if(!($uid = player::create($_REQUEST["nick"], $_REQUEST["pass1"], $_REQUEST["email"])))
 	die("Create user failed.");
 
-$home = celb::randfree('...');
-$home->owner = $uid->id;
+if(!($home = celb::randfree('...')))
+	die("No free home planet found.");
 
-$sid = session::create($uid->id);
+if(!$home->sethome($uid->id))
+	die("Set home planet failed.");
 
-if(!$sid)
+if(!($sid = session::create($uid->id)))
 	die("Failed to create session ID.");
 
 setcookie('session', $sid->id);
