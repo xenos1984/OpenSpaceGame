@@ -69,9 +69,10 @@ class view
 			$tr = trans::find($this->player->lang, $res->id);
 			$rx->setAttribute('name', $tr->name);
 			$rx->setAttribute('id', $res->id);
-			$rx->setAttribute('present', 0);
-			$rx->setAttribute('storage', 0);
-			$rx->setAttribute('production', 0);
+			$value = $this->celb->resvalues($res->id);
+			$rx->setAttribute('present', (int)$value['present']);
+			$rx->setAttribute('storage', (int)$value['storage']);
+			$rx->setAttribute('production', (int)$value['production']);
 		}
 	}
 

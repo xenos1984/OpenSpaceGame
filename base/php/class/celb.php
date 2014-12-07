@@ -127,19 +127,20 @@ class celb
 
 		if(is_null($res))
 		{
-			$data = select_all('celb_ress', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb));
+			$data = db::select_all('celb_ress', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb));
 			foreach($data as &$item)
 			{
-				$item['present'] = max($item['present'], min($item['storage'], $item['present'] + $item['production'] * ($now - $item['time'])));
+				$item['present'] = max($item['present'], min($item['storage'], $item['present'] + $item['production'] * ($now - $item['time']) / 3600));
 				$item['time'] = $now;
 			}
 		}
 		else
 		{
-			$data = select_one('celb_ress', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb, 'res' => $res));
-			$data['present'] = max($data['present'], min($data['storage'], $data['present'] + $data['production'] * ($now - $data['time'])));
+			$data = db::select_one('celb_ress', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb, 'res' => $res));
+			$data['present'] = max($data['present'], min($data['storage'], $data['present'] + $data['production'] * ($now - $data['time']) / 3600));
 			$data['time'] = $now;
 		}
+		return $data;
 	}
 }
 ?>
