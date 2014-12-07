@@ -5,6 +5,7 @@ include_once("class/db.php");
 echo "<h2>Create celestial bodies</h2>\n";
 
 $to = $tc = 0;
+$types = db::select_all('celbtypes', array(), array('id'));
 
 for($g = 1; $g <= config::CELB_GALAXIES; $g++)
 {
@@ -39,7 +40,7 @@ for($g = 1; $g <= config::CELB_GALAXIES; $g++)
 					'sun' => $s,
 					'orbit' => $o,
 					'celb' => $c,
-					'type' => '...',
+					'type' => $types[mt_rand(0, count($types) - 1)]['id'],
 					'owner' => 0,
 					'name' => ''));
 			}

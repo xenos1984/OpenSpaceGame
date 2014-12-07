@@ -22,12 +22,12 @@ $allok = true;
 $languages = $xpath->query("/game/translations");
 foreach($languages as $language)
 {
-	$lang = $language->getAttribute("lang");
+	$lang = $language->getAttribute('lang');
 	$translations = $xpath->query("translation", $language);
 	foreach($translations as $translation)
 	{
-		$id = $translation->getAttribute("id");
-		$name = $translation->getAttribute("name");
+		$id = $translation->getAttribute('id');
+		$name = $translation->getAttribute('name');
 		$descr = $xpath->evaluate("text()", $translation)->item(0)->wholeText;
 
 		$ok = db::insert('translation', array(
@@ -50,8 +50,8 @@ $allok = true;
 $celbs = $xpath->query("/game/celbtype");
 foreach($celbs as $celb)
 {
-	$id = $celb->getAttribute("id");
-	$start = (bool)($celb->getAttribute("start"));
+	$id = $celb->getAttribute('id');
+	$start = (($celb->getAttribute('start') == '1') || ($celb->getAttribute('start') == 'true') ? 1 : 0);
 
 	$ok = db::insert('celbtypes', array(
 		'id' => $id,
@@ -70,8 +70,8 @@ $allok = true;
 $ress = $xpath->query("/game/resource");
 foreach($ress as $res)
 {
-	$id = $res->getAttribute("id");
-	$value = $res->getAttribute("value");
+	$id = $res->getAttribute('id');
+	$value = $res->getAttribute('value');
 
 	$ok = db::insert('resources', array(
 		'id' => $id,
@@ -90,9 +90,9 @@ $allok = true;
 $buildings = $xpath->query("/game/building");
 foreach($buildings as $building)
 {
-	$id = $building->getAttribute("id");
-	$time = $building->getAttribute("time");
-	$factor = $building->getAttribute("factor");
+	$id = $building->getAttribute('id');
+	$time = $building->getAttribute('time');
+	$factor = $building->getAttribute('factor');
 
 	$ok = db::insert('buildings', array(
 		'id' => $id,
@@ -104,7 +104,7 @@ foreach($buildings as $building)
 	$buildons = $xpath->query("buildon", $building);
 	foreach($buildons as $buildon)
 	{
-		$celb = $buildon->getAttribute("id");
+		$celb = $buildon->getAttribute('id');
 
 		$ok = db::insert('buildon', array(
 			'building' => $id,
@@ -116,9 +116,9 @@ foreach($buildings as $building)
 	$costs = $xpath->query("cost", $building);
 	foreach($costs as $cost)
 	{
-		$res = $cost->getAttribute("id");
-		$value = $cost->getAttribute("value");
-		$factor = $cost->getAttribute("factor");
+		$res = $cost->getAttribute('id');
+		$value = $cost->getAttribute('value');
+		$factor = $cost->getAttribute('factor');
 
 		$ok = db::insert('br_costs', array(
 			'brid' => $id,
@@ -141,9 +141,9 @@ $allok = true;
 $researches = $xpath->query("/game/research");
 foreach($researches as $research)
 {
-	$id = $research->getAttribute("id");
-	$time = $research->getAttribute("time");
-	$factor = $research->getAttribute("factor");
+	$id = $research->getAttribute('id');
+	$time = $research->getAttribute('time');
+	$factor = $research->getAttribute('factor');
 
 	$ok = db::insert('researches', array(
 		'id' => $id,
@@ -155,9 +155,9 @@ foreach($researches as $research)
 	$costs = $xpath->query("cost", $research);
 	foreach($costs as $cost)
 	{
-		$res = $cost->getAttribute("id");
-		$value = $cost->getAttribute("value");
-		$factor = $cost->getAttribute("factor");
+		$res = $cost->getAttribute('id');
+		$value = $cost->getAttribute('value');
+		$factor = $cost->getAttribute('factor');
 
 		$ok = db::insert('br_costs', array(
 			'brid' => $id,
