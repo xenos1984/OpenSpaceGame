@@ -35,7 +35,7 @@ abstract class formula
 				else
 					return false;
 			}
-			return new formula_sum($terms);
+			return new formula_product($terms);
 		default:
 			return false;
 		}

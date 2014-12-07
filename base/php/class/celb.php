@@ -1,5 +1,7 @@
 <?php
 include_once("class/db.php");
+include_once("class/resource.php");
+include_once("class/formula.php");
 
 class celb
 {
@@ -95,7 +97,28 @@ class celb
 	{
 		$this->owner = $uid;
 		$this->name = $name;
-		return db::update('celbs', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb), array('owner' => $uid, 'name' => $name));
+		if(!db::update('celbs', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb), array('owner' => $uid, 'name' => $name)))
+			return false;
+
+		$now = time();
+		$ress = resource::all();
+		foreach($ress as $res)
+		{
+			if($ps = db::select_one('prodstore', array('celb' => $this->type, 'res' => $res->id)))
+			{
+				$fp = unserialize($ps['production']);
+				$fs = unserialize($ps['storage']);
+				$prod = $fp->evaluate(array());
+				$store = $fs->evaluate(array());
+			}
+			else
+			{
+				$prod = 0;
+				$store = 0;
+			}
+			db::insert('celb_ress', array('galaxy' => $this->galaxy, 'sun' => $this->sun, 'orbit' => $this->orbit, 'celb' => $this->celb, 'res' => $res->id, 'present' => $res->value, 'production' => $prod, 'storage' => $store, 'time' => $now));
+		}
+		return true;
 	}
 }
 ?>
