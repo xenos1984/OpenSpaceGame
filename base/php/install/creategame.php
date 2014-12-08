@@ -5,6 +5,7 @@ include_once("class/formula.php");
 
 echo "<h2>Create universe configuration</h2>\n";
 
+$mtime = microtime(true);
 $xml = new DOMDocument;
 $xml->resolveExternals = true;
 $xml->substituteEntities = true;
@@ -219,6 +220,8 @@ if($allok)
 else
 	echo '<span style="color:red">Errors.</span></li>' . "\n";
 
+$mtime = microtime(true) - $mtime;
+echo "<li>Time taken: $mtime seconds.</li>\n";
 echo "</ul>\n";
 flush();
 ?>

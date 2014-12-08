@@ -15,6 +15,7 @@ function maketable($tabname, $content)
 		echo '<span style="color:green">Success.</span></li>' . "\n";
 }
 
+$mtime = microtime(true);
 echo "<h2>Create tables</h2>\n";
 echo "<ul>\n";
 
@@ -197,6 +198,8 @@ maketable("building_list", array(
 	array("level", "SMALLINT"),
 	array("finished", "BIGINT", "NOT NULL")));
 
+$mtime = microtime(true) - $mtime;
+echo "<li>Time taken: $mtime seconds.</li>\n";
 echo "</ul>\n";
 flush();
 ?>

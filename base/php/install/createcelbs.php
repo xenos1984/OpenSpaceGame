@@ -4,6 +4,7 @@ include_once("class/db.php");
 
 echo "<h2>Create celestial bodies</h2>\n";
 
+$mtime = microtime(true);
 $ss = $so = $sc = $to = $tc = 0;
 $types = db::select_all('celbtypes', array(), array('id'));
 $allok = true;
@@ -49,11 +50,13 @@ for($g = 1; $g <= config::CELB_GALAXIES; $g++)
 	}
 }
 
+$mtime = microtime(true) - $mtime;
 echo "<ul>\n";
 echo "<li>Total galaxies: " . config::CELB_GALAXIES . ".</li>\n";
 echo "<li style=\"color:" . ($ss == config::CELB_GALAXIES * config::CELB_SUNS ? "green" : "red") . "\">Total solar systems: " . (config::CELB_GALAXIES * config::CELB_SUNS) . "; $ss successfully created.</li>\n";
 echo "<li style=\"color:" . ($so == $to ? "green" : "red") . "\">Total orbits: $to; $so  successfully created.</li>\n";
 echo "<li style=\"color:" . ($sc == $tc ? "green" : "red") . "\">Total celestial bodies: $tc; $sc successfully created.</li>\n";
+echo "<li>Time taken: $mtime seconds.</li>\n";
 echo "</ul>\n";
 flush();
 ?>
