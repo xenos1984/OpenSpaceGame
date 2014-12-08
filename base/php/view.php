@@ -33,11 +33,15 @@ if(!file_exists("views/{$_REQUEST['view']}.php"))
 	die("View file {$_REQUEST['view']}.php not found.");
 
 // Include it and generate XML data.
+$time1 = microtime(true);
 include("views/{$_REQUEST['view']}.php");
 $xml = new viewxml();
 if(!$xml->validate())
 	die("ERROR: Invalid XML generated!");
+$time2 = microtime(true);
 
 // Output data.
 $xml->output();
+$time3 = microtime(true);
+echo "<!-- XML-generation: " . ($time2 - $time1) . "; XSLT-translation: " . ($time3 - $time2) . " !-->\n";
 ?>
